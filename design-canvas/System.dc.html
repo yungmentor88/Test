@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Jost:wght@300;400;500;600&display=swap">
+  <style>
+    body { margin: 0; background: #F2EDE6; }
+    a { color: #A8265C; } a:hover { color: #4A1228; }
+    .lbl { font: 500 11px/1 'Jost', system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+    .dsp { font-family: 'Bodoni Moda', Didot, 'Times New Roman', serif; font-weight: 400; }
+    .txt { font-family: 'Jost', system-ui, -apple-system, sans-serif; }
+    .rule { height: 1px; background: #D8CEC2; }
+  </style>
+</helmet>
+<div class="txt" style="width: 1240px; background: #F2EDE6; color: #14100E; padding: 64px 72px;">
+  <div class="lbl" style="color: #A8265C; margin-bottom: 10px;">SHUMI &mdash; design system</div>
+  <div class="dsp" style="font-size: 52px; line-height: 1.06; letter-spacing: -.02em; margin-bottom: 52px;">The elements.</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px;">
+    <div>
+      <div class="lbl" style="color: #A8265C; margin-bottom: 22px;">Palette</div>
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        <div style="display: flex; align-items: center; gap: 20px; padding: 13px 0; border-bottom: 1px solid #D8CEC2;">
+          <span style="width: 56px; height: 40px; background: #F2EDE6; border: 1px solid #D8CEC2;"></span>
+          <span class="dsp" style="font-size: 19px; width: 110px;">Bone</span>
+          <span class="txt" style="font-size: 13px; color: #6B6259; width: 84px;">#F2EDE6</span>
+          <span class="txt" style="font-size: 13px; color: #6B6259; flex-grow: 1;">Primary ground</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; padding: 13px 0; border-bottom: 1px solid #D8CEC2;">
+          <span style="width: 56px; height: 40px; background: #14100E;"></span>
+          <span class="dsp" style="font-size: 19px; width: 110px;">Ink</span>
+          <span class="txt" style="font-size: 13px; color: #6B6259; width: 84px;">#14100E</span>
+          <span class="txt" style="font-size: 13px; color: #6B6259; flex-grow: 1;">Text &middot; 16.2:1</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; padding: 13px 0; border-bottom: 1px solid #D8CEC2;">
+          <span style="width: 56px; height: 40px; background: #4A1228;"></span>
+          <span class="dsp" style="font-size: 19px; width: 110px;">Wine</span>
+          <span class="txt" style="font-size: 13px; color: #6B6259; width: 84px;">#4A1228</span>
+          <span class="txt" style="font-size: 13px; color: #6B6259; flex-grow: 1;">Second ground &middot; 12.8:1</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; padding: 13px 0; border-bottom: 1px solid #D8CEC2;">
+          <span style="width: 56px; height: 40px; background: #A8265C;"></span>
+          <span class="dsp" style="font-size: 19px; width: 110px;">Rose</span>
+          <span class="txt" style="font-size: 13px; color: #6B6259; width: 84px;">#A8265C</span>
+          <span class="txt" style="font-size: 13px; color: #6B6259; flex-grow: 1;">The working pink &middot; 5.8:1</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; padding: 13px 0; border-bottom: 1px solid #D8CEC2;">
+          <span style="width: 56px; height: 40px; background: #E85D9E;"></span>
+          <span class="dsp" style="font-size: 19px; width: 110px;">Brand pink</span>
+          <span class="txt" style="font-size: 13px; color: #6B6259; width: 84px;">#E85D9E</span>
+          <span class="txt" style="font-size: 13px; color: #A8265C; flex-grow: 1;">Dark grounds &amp; display only</span>
+        </div>
+      </div>
+      <div class="txt" style="font-size: 13px; line-height: 1.65; color: #6B6259; margin-top: 20px; padding: 14px 16px; background: #EAE3D9;">
+        The logo pink measures <strong>2.78:1 on bone and fails AA for text</strong>. It is
+        legal and beautiful on ink (5.85:1) and wine (4.61:1). So the system runs two pinks:
+        rose carries meaning on light, brand pink carries the brand on dark.
+      </div>
+    </div>
+
+    <div>
+      <div class="lbl" style="color: #A8265C; margin-bottom: 22px;">Typography</div>
+      <div style="border-bottom: 1px solid #D8CEC2; padding-bottom: 16px; margin-bottom: 16px;">
+        <div class="dsp" style="font-size: 60px; line-height: 1; letter-spacing: -.025em;">Bodoni Moda</div>
+        <div class="txt" style="font-size: 13px; color: #6B6259; margin-top: 10px;">Display &middot; 40&ndash;100px &middot; never below 28px</div>
+      </div>
+      <div style="border-bottom: 1px solid #D8CEC2; padding-bottom: 16px; margin-bottom: 22px;">
+        <div class="txt" style="font-size: 34px; font-weight: 300; line-height: 1.2;">Jost &mdash; everything you read</div>
+        <div class="txt" style="font-size: 13px; color: #6B6259; margin-top: 10px;">Body 17&ndash;18px / 1.7 &middot; labels 11&ndash;12px tracked .2em</div>
+      </div>
+      <div class="lbl" style="color: #A8265C; margin-bottom: 18px;">Controls</div>
+      <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+        <span class="lbl" style="background: #A8265C; color: #F2EDE6; padding: 16px 26px;">Primary</span>
+        <span class="lbl" style="border: 1px solid #14100E; color: #14100E; padding: 15px 25px;">Secondary</span>
+        <span class="lbl" style="color: #14100E; border-bottom: 1px solid #14100E; padding-bottom: 4px;">Text link</span>
+        <span class="lbl" style="background: #A8265C; color: #F2EDE6; padding: 16px 26px; outline: 3px solid #14100E; outline-offset: 3px;">Focus</span>
+      </div>
+      <div class="txt" style="font-size: 13px; line-height: 1.65; color: #6B6259; margin-top: 24px; padding: 14px 16px; background: #EAE3D9;">
+        No cards, no rounded corners, no drop shadows. Separation comes from hairlines,
+        ground changes and space &mdash; which is what keeps it feeling like a publication
+        rather than a template.
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

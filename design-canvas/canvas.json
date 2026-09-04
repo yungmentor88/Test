@@ -1,0 +1,55 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 5100,
+      "title": "Homepage \u2014 desktop"
+    },
+    {
+      "file": "Mobile.dc.html",
+      "x": 1580,
+      "y": 0,
+      "w": 390,
+      "h": 3220,
+      "title": "Homepage \u2014 mobile"
+    },
+    {
+      "file": "Event.dc.html",
+      "x": 2110,
+      "y": 0,
+      "w": 1440,
+      "h": 2080,
+      "title": "The Autumn Assembly"
+    },
+    {
+      "file": "System.dc.html",
+      "x": 2110,
+      "y": 2280,
+      "w": 1390,
+      "h": 960,
+      "title": "Design system"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "note-direction",
+      "x": 0,
+      "y": -230,
+      "w": 640,
+      "text": "SHUMI \u2014 The Editorial House\n\nElegant, editorial, event-first. Modern Day Wife informed the EXPERIENCE \u2014 named events as destinations, women-first positioning, editorial storytelling \u2014 and none of its layout, type or palette.\n\nEvery photograph is an AI placeholder. Every fact SHUMI has not given us is a visible [PLACEHOLDER]."
+    },
+    {
+      "id": "note-system",
+      "x": 2110,
+      "y": 3340,
+      "w": 640,
+      "text": "The logo pink measures 2.78:1 on bone and fails AA for text. It is legal on ink (5.85:1) and on wine (4.61:1). Hence two pinks: rose carries meaning on light grounds, brand pink carries the brand on dark."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
