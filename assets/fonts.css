@@ -1,0 +1,28 @@
+/* Self-hosted so the wireframe renders correctly with no network connection.
+   Latin subset only. Figtree ships as a single variable font, so one file
+   covers every weight the site uses. */
+
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 300 900;          /* variable axis — 400/500/600/700 all interpolate */
+  font-display: swap;
+  src: url('fonts/figtree-variable.woff2') format('woff2-variations'),
+       url('fonts/figtree-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/newsreader-normal-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/newsreader-italic-400.woff2') format('woff2');
+}

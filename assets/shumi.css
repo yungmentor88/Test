@@ -1,0 +1,646 @@
+/* ==========================================================================
+   SHUMI Women's Empowerment — wireframe stylesheet
+   Built from /design/direction.md. Every colour ratio in this file is computed.
+   9ja LDA
+   ========================================================================== */
+
+/* --- 1. Tokens ----------------------------------------------------------- */
+
+:root {
+  /* Colour. Ratios noted are against the stated background. */
+  --paper:        #FFFFFF;
+  --blush:        #FDF4F2;  /* alternate section ground — a pink so pale it reads warm-white */
+  --ink:          #1B141A;  /* 18.08:1 on paper */
+  --ink-soft:     #574A52;  /*  8.38:1 on paper */
+  --rose:         #A8325A;  /*  6.42:1 on paper AND 6.42:1 under white text */
+  --rose-light:   #F2C7D2;  /* DECORATIVE ONLY — 1.51:1 on paper. Never carries meaning. */
+  --rose-wash:    #FBEAEE;  /* hover ground only */
+
+  --line:         #E6DCDC;  /* decorative hairline, not a UI boundary */
+  --field-border: #8C7E86;  /*  3.86:1 on paper — form controls need 3:1, hairlines do not */
+  --error:        #B3261E;  /*  6.54:1 on paper */
+
+  /* !! THE RULE THAT GETS BROKEN !!
+     --rose on --ink is 2.81:1 and FAILS AA.
+     On the dark footer or any dark overlay, accent text is --rose-light (11.95:1). */
+
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-text:    'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --measure: 68ch;
+  --gutter: 20px;
+  --max: 1180px;
+
+  --tap: 44px;               /* minimum touch target */
+  --radius: 4px;             /* restrained on purpose — not a rounded-card site */
+}
+
+/* --- 2. Reset ------------------------------------------------------------ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 18px;           /* 18px, not 16px — see direction §4.4 */
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* height:auto is load-bearing: without it the HTML height attribute wins
+   over aspect-ratio and every cropped slot renders at its natural height. */
+img { max-width: 100%; display: block; height: auto; }
+
+h1, h2, h3, h4 { margin: 0 0 .5em; font-weight: 400; }
+p { margin: 0 0 1em; }
+p:last-child { margin-bottom: 0; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+/* --- 3. Type scale ------------------------------------------------------- */
+
+h1, .t-display {
+  font-family: var(--font-display);
+  font-size: 34px; line-height: 1.15; letter-spacing: -.015em;
+}
+h2, .t-section {
+  font-family: var(--font-display);
+  font-size: 26px; line-height: 1.2; letter-spacing: -.01em;
+}
+h3, .t-card   { font-size: 20px; line-height: 1.3; font-weight: 600; }
+h4            { font-size: 18px; line-height: 1.35; font-weight: 600; }
+
+.t-lead  { font-size: 20px; line-height: 1.6; color: var(--ink-soft); }
+.t-meta  { font-size: 16px; line-height: 1.5; font-weight: 500; color: var(--ink-soft); }
+
+@media (min-width: 800px) {
+  h1, .t-display { font-size: 60px; line-height: 1.08; }
+  h2, .t-section { font-size: 38px; line-height: 1.15; }
+  h3, .t-card    { font-size: 22px; }
+  .t-lead        { font-size: 21px; }
+}
+
+/* --- 4. Layout ----------------------------------------------------------- */
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.wrap-narrow { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter); }
+
+section { padding: 56px 0; }
+@media (min-width: 800px) { section { padding: 88px 0; } }
+
+.ground-blush { background: var(--blush); }
+
+.stack > * + * { margin-top: 16px; }
+.prose { max-width: var(--measure); }
+
+/* Section heading + optional intro */
+.section-head { max-width: 640px; margin-bottom: 32px; }
+.section-head p { color: var(--ink-soft); margin-bottom: 0; }
+
+/* --- 5. The swoosh — the one owned motif. Once per page, never twice
+        on a screen. Decorative: aria-hidden in the markup. ---------------- */
+
+.swoosh { position: relative; white-space: nowrap; }
+.swoosh > svg {
+  position: absolute;
+  left: -2%; bottom: -.32em;
+  width: 104%; height: .38em;
+  overflow: visible;
+  color: var(--rose-light);
+  pointer-events: none;
+}
+
+/* --- 6. Links and buttons ------------------------------------------------ */
+
+a { color: var(--rose); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* Visible focus, in the brand palette, on everything. */
+:focus-visible {
+  outline: 3px solid var(--rose);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: var(--tap); padding: 12px 22px;
+  font-family: var(--font-text); font-size: 17px; font-weight: 600; letter-spacing: .01em;
+  line-height: 1; text-decoration: none; border-radius: var(--radius);
+  border: 2px solid transparent; cursor: pointer;
+}
+.btn-primary { background: var(--rose); color: #fff; }          /* 6.42:1 */
+.btn-primary:hover { background: #8E2A4E; }
+.btn-outline { background: transparent; color: var(--rose); border-color: var(--rose); }
+.btn-outline:hover { background: var(--rose-wash); }
+.btn-on-ink { background: var(--paper); color: var(--ink); }    /* footer / dark bands */
+.btn-on-ink:hover { background: var(--rose-light); }
+
+/* Text link that is not a button — no decorative arrows anywhere. */
+.link-plain { font-weight: 600; color: var(--rose); }
+
+/* External-link marker. This is NOT the decorative arrow the brief rules out:
+   it carries meaning (this leaves the site) and is paired with real text
+   for screen readers. Internal links never get it. */
+.ext-icon { width: 13px; height: 13px; flex: none; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+/* The skip link must become a real, full-size target when it takes focus. */
+a.sr-only:focus, a.sr-only:focus-visible {
+  position: fixed; top: 8px; left: 8px; z-index: 300;
+  width: auto; height: auto; min-height: var(--tap);
+  display: inline-flex; align-items: center;
+  clip: auto; margin: 0; padding: 10px 18px;
+  background: var(--paper); color: var(--rose);
+  border: 2px solid var(--rose); border-radius: var(--radius);
+  font-weight: 600; text-decoration: none;
+}
+
+/* --- 7. Event bar — persistent, above the header ------------------------ */
+
+.event-bar { background: var(--ink); color: var(--paper); font-size: 16px; }
+.event-bar .wrap {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px;
+  padding-top: 10px; padding-bottom: 10px;
+}
+.event-bar b { font-weight: 600; }
+.event-bar .dot { color: var(--rose-light); }  /* rose would fail on ink */
+.event-bar a.bar-cta {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 7px;
+  min-height: var(--tap); padding: 8px 14px;
+  background: var(--paper); color: var(--ink);
+  font-weight: 600; text-decoration: none; border-radius: var(--radius);
+}
+.event-bar a.bar-cta:hover { background: var(--rose-light); }
+.event-bar :focus-visible { outline-color: var(--rose-light); }
+
+/* --- 8. Header ----------------------------------------------------------- */
+
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--paper); border-bottom: 1px solid var(--line);
+}
+.site-header .wrap {
+  display: flex; align-items: center; gap: 16px;
+  min-height: 64px;
+}
+
+/* Logo — the outline + drop-shadow treatment stays on the logo and
+   appears nowhere else on the site. */
+.logo { display: inline-flex; align-items: center; text-decoration: none; flex: none; }
+.logo-mark {
+  font-family: var(--font-display);
+  font-size: 25px; font-weight: 700; letter-spacing: .06em;
+  color: var(--ink);
+  -webkit-text-stroke: 0; /* keep flat here; the real logo art replaces this */
+}
+.logo-mark .heart { color: var(--rose); }
+.logo small {
+  /* The ONLY sub-16px text on the site. This is a stand-in for the logo lockup
+     and is replaced by the real logo artwork; it is not site copy. */
+  display: block; font-family: var(--font-text); font-size: 11px;
+  letter-spacing: .13em; color: var(--ink-soft); font-weight: 600;
+  text-transform: none;
+}
+
+.nav-desktop { display: none; }
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+
+@media (min-width: 1060px) {
+  .nav-desktop { display: flex; align-items: center; gap: 4px; margin-left: 22px; }
+  .btn-menu { display: none !important; }
+}
+
+/* Desktop nav item with a grouped dropdown */
+.nav-item { position: relative; }
+.nav-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: var(--tap); padding: 0 12px;
+  font-size: 17px; font-weight: 500; color: var(--ink); text-decoration: none;
+  background: none; border: 0; cursor: pointer; font-family: var(--font-text);
+}
+.nav-link:hover { color: var(--rose); text-decoration: underline; }
+.nav-link[aria-current="page"] { color: var(--rose); font-weight: 600; }
+.nav-link[aria-current="page"]::after {   /* not colour alone */
+  content: ""; position: absolute; left: 12px; right: 12px; bottom: 8px;
+  height: 2px; background: var(--rose);
+}
+.nav-caret { width: 10px; height: 10px; }
+
+.nav-panel {
+  position: absolute; top: 100%; left: 0; min-width: 268px;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 8px; margin: 0;
+  box-shadow: 0 10px 28px rgba(27, 20, 26, .10);   /* the ONE shadow on the site: a menu floating over content */
+}
+.nav-panel[hidden] { display: none; }
+.nav-panel a {
+  display: block; padding: 11px 12px; min-height: var(--tap);
+  color: var(--ink); text-decoration: none; font-size: 17px; border-radius: 3px;
+}
+.nav-panel a:hover { background: var(--rose-wash); color: var(--rose); }
+.nav-panel .reserved {
+  display: block; padding: 10px 12px; font-size: 16px; color: var(--ink-soft);
+  border-top: 1px solid var(--line); margin-top: 6px;
+}
+
+.btn-menu {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: var(--tap); padding: 10px 16px;
+  background: transparent; border: 2px solid var(--ink); border-radius: var(--radius);
+  font-family: var(--font-text); font-size: 17px; font-weight: 600; color: var(--ink);
+  cursor: pointer;
+}
+.btn-contact-header { display: none; }
+@media (min-width: 620px) { .btn-contact-header { display: inline-flex; } }
+
+/* Below 520px the header ticket button wraps and crowds the logo. The event bar
+   immediately above already carries a persistent ticket CTA (and the event page
+   adds a sticky one), so the header copy is redundant rather than lost. */
+@media (max-width: 519px) {
+  .header-actions > .btn-primary { display: none; }
+}
+
+/* --- 9. Mobile menu — full screen, worded, accordions ------------------- */
+
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 100;
+  background: var(--paper);
+  display: flex; flex-direction: column;
+}
+.mobile-menu[hidden] { display: none; }
+.mobile-menu-top {
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px var(--gutter); border-bottom: 1px solid var(--line);
+  min-height: 64px;
+}
+.mobile-menu-top .btn-close { margin-left: auto; }
+.mobile-menu-body { flex: 1; overflow-y: auto; padding: 8px var(--gutter) 24px; }
+
+.m-group { border-bottom: 1px solid var(--line); }
+.m-row { display: flex; align-items: stretch; }
+.m-row > a {
+  flex: 1; display: flex; align-items: center; min-height: 56px;
+  font-size: 19px; font-weight: 600; color: var(--ink); text-decoration: none;
+}
+.m-row > button {
+  flex: none; width: 56px; min-height: 56px;
+  background: none; border: 0; border-left: 1px solid var(--line);
+  font-size: 26px; line-height: 1; color: var(--rose); cursor: pointer;
+  font-family: var(--font-text);
+}
+.m-children[hidden] { display: none; }
+.m-children { padding: 0 0 12px 4px; }
+.m-children a {
+  display: flex; align-items: center; min-height: var(--tap);
+  padding: 6px 0; font-size: 17px; color: var(--ink); text-decoration: none;
+}
+.m-children a:hover { color: var(--rose); text-decoration: underline; }
+.m-children .reserved { font-size: 16px; color: var(--ink-soft); padding: 8px 0; }
+
+.mobile-menu-foot {
+  border-top: 1px solid var(--line); padding: 16px var(--gutter);
+  display: grid; gap: 10px; background: var(--blush);
+}
+
+/* --- 10. Hero ------------------------------------------------------------ */
+
+.hero { padding: 40px 0 48px; }
+.hero-grid { display: grid; gap: 28px; align-items: center; }
+@media (min-width: 900px) {
+  .hero { padding: 72px 0 80px; }
+  .hero-grid { grid-template-columns: 1fr 1.05fr; gap: 56px; }
+}
+.hero .kriolu {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 22px; color: var(--rose); margin-bottom: 6px;
+}
+.hero h1 { margin-bottom: 20px; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 26px; }
+.hero-figure img { width: 100%; border-radius: var(--radius); }
+@media (min-width: 900px) {
+  .hero-figure img { aspect-ratio: 4 / 3; object-fit: cover; }
+}
+.hero-figure figcaption { margin-top: 10px; }
+
+/* Placeholder badge — the client must never think these are their photos. */
+.ph {
+  position: relative; display: block;
+}
+.ph::after {
+  content: "Placeholder image";
+  position: absolute; left: 10px; bottom: 10px;
+  background: rgba(27,20,26,.86); color: #fff;
+  font-family: var(--font-text); font-size: 12px; font-weight: 600;
+  letter-spacing: .02em; padding: 5px 9px; border-radius: 3px;
+  pointer-events: none;
+}
+
+/* --- 11. The event band -------------------------------------------------- */
+
+.event-band { background: var(--blush); border-top: 1px solid var(--rose-light); border-bottom: 1px solid var(--rose-light); }
+.event-band .inner { display: grid; gap: 28px; }
+@media (min-width: 900px) { .event-band .inner { grid-template-columns: 1.15fr 1fr; gap: 52px; align-items: center; } }
+.event-facts { display: grid; gap: 10px; margin: 20px 0 26px; }
+.event-facts div { display: flex; gap: 12px; font-size: 18px; }
+.event-facts dt, .event-facts .k { font-weight: 600; min-width: 92px; flex: none; }
+.event-band .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+.event-band img { border-radius: var(--radius); }
+
+/* Post-event state uses the identical band — no layout shift on 12 Oct. */
+.recap-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
+
+/* --- 12. Programs — deliberately NOT the same card as everything else ---- */
+
+.programs { display: grid; gap: 2px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+@media (min-width: 700px) { .programs { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .programs { grid-template-columns: repeat(4, 1fr); } }
+.program { background: var(--paper); padding: 26px 22px; }
+.program h3 { margin-bottom: 8px; }
+.program p { color: var(--ink-soft); font-size: 17px; }
+.program .num { display: none; }  /* no 01/02/03 markers — these are not a sequence */
+
+/* --- 13. Story cards — a third, different object ------------------------ */
+
+.card-row { display: grid; gap: 28px; }
+@media (min-width: 700px) { .card-row { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .card-row { grid-template-columns: repeat(3, 1fr); } }
+
+.story { display: flex; flex-direction: column; }
+.story .shot { border-radius: var(--radius); overflow: hidden; margin-bottom: 14px; }
+.story .shot img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.story .tag {
+  display: inline-block; font-size: 16px; font-weight: 600; color: var(--rose);
+  margin-bottom: 6px;
+}
+.story h3 { margin-bottom: 6px; }
+.story h3 a { color: var(--ink); text-decoration: none; }
+.story h3 a:hover { color: var(--rose); text-decoration: underline; }
+.story p { color: var(--ink-soft); font-size: 17px; }
+
+/* --- 14. Impact — built, but empty until the client supplies -------------- */
+
+.tbd {
+  display: inline-block;
+  background: repeating-linear-gradient(-45deg, #F4EEF0, #F4EEF0 6px, #EDE4E7 6px, #EDE4E7 12px);
+  border: 1px dashed var(--field-border);
+  color: var(--ink); font-family: var(--font-text); font-size: 16px; font-weight: 600;
+  padding: 3px 9px; border-radius: 3px;
+}
+.impact-grid { display: grid; gap: 24px; }
+@media (min-width: 760px) { .impact-grid { grid-template-columns: repeat(3, 1fr); } }
+.impact-cell { border-top: 3px solid var(--rose-light); padding-top: 16px; }
+.impact-cell .value { font-family: var(--font-display); font-size: 34px; line-height: 1.1; display: block; margin-bottom: 8px; }
+.impact-cell p { color: var(--ink-soft); font-size: 17px; }
+
+.note-editorial {
+  border-left: 3px solid var(--rose); background: var(--blush);
+  padding: 16px 18px; font-size: 17px; border-radius: 0 var(--radius) var(--radius) 0;
+}
+.note-editorial strong { display: block; margin-bottom: 4px; }
+
+/* --- 15. Get involved ---------------------------------------------------- */
+
+.involve { display: grid; gap: 22px; }
+@media (min-width: 800px) { .involve { grid-template-columns: repeat(3, 1fr); } }
+.involve-cell { border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 24px; display: flex; flex-direction: column; }
+.involve-cell h3 { margin-bottom: 8px; }
+.involve-cell p { color: var(--ink-soft); font-size: 17px; flex: 1; }
+.involve-cell .btn, .involve-cell .link-plain { margin-top: 18px; align-self: flex-start; }
+.involve-cell.soon { background: var(--blush); border-style: dashed; }
+.involve-cell.soon h3 { color: var(--ink-soft); }
+
+/* --- 16. Gallery --------------------------------------------------------- */
+
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (min-width: 760px) { .gallery { grid-template-columns: repeat(4, 1fr); } }
+.gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--radius); }
+
+/* --- 17. Mailing list ---------------------------------------------------- */
+
+.signup { background: var(--blush); }
+.signup .inner { display: grid; gap: 26px; align-items: start; }
+@media (min-width: 860px) { .signup .inner { grid-template-columns: 1fr 1fr; gap: 56px; } }
+
+.field { display: grid; gap: 6px; margin-bottom: 16px; }
+.field label { font-weight: 600; font-size: 17px; }
+.field .hint { font-size: 16px; color: var(--ink-soft); }
+.field input, .field textarea, .field select {
+  font-family: var(--font-text); font-size: 18px; line-height: 1.4;
+  min-height: var(--tap); padding: 11px 13px;
+  border: 1px solid var(--field-border); border-radius: var(--radius);
+  background: var(--paper); color: var(--ink); width: 100%;
+}
+.field textarea { min-height: 130px; resize: vertical; }
+.field input:focus-visible, .field textarea:focus-visible, .field select:focus-visible {
+  outline: 3px solid var(--rose); outline-offset: 1px; border-color: var(--rose);
+}
+.field .err { color: var(--error); font-size: 16px; font-weight: 600; display: flex; gap: 6px; }
+.field.is-bad input, .field.is-bad textarea { border-color: var(--error); border-width: 2px; }
+
+.form-note { font-size: 16px; color: var(--ink-soft); }
+
+/* --- 18. Footer ---------------------------------------------------------- */
+
+.site-footer { background: var(--ink); color: var(--paper); padding: 56px 0 28px; }
+.site-footer a { color: var(--paper); text-decoration: none; }
+.site-footer a:hover { color: var(--rose-light); text-decoration: underline; }  /* rose fails on ink */
+.site-footer :focus-visible { outline-color: var(--rose-light); }
+.foot-cols { display: grid; gap: 32px; }
+@media (min-width: 700px) { .foot-cols { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .foot-cols { grid-template-columns: repeat(4, 1fr); } }
+.foot-cols h2 {
+  font-family: var(--font-text); font-size: 16px; font-weight: 700;
+  letter-spacing: .02em; margin-bottom: 14px; color: var(--rose-light);
+}
+.foot-cols li a { display: inline-flex; min-height: var(--tap); align-items: center; }
+.foot-base {
+  border-top: 1px solid #3A3138; margin-top: 40px; padding-top: 22px;
+  display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; font-size: 16px;
+}
+.foot-base > a { display: inline-flex; align-items: center; min-height: var(--tap); }
+.socials { display: flex; gap: 8px; }
+.socials a {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: var(--tap); padding: 8px 12px;
+  border: 1px solid #3A3138; border-radius: var(--radius);
+}
+.socials svg { width: 18px; height: 18px; }
+.foot-base .spacer { margin-left: auto; }
+.site-footer .field input { color: var(--ink); }
+.site-footer .signup-mini label { color: var(--paper); }
+.site-footer .signup-mini .hint { color: #C9BFC5; }
+
+/* --- 19. Contact dialog -------------------------------------------------- */
+
+dialog.contact {
+  width: min(560px, calc(100vw - 32px));
+  border: 1px solid var(--line); border-radius: 6px; padding: 0;
+  color: var(--ink); background: var(--paper);
+}
+dialog.contact::backdrop { background: rgba(27, 20, 26, .55); }
+.dialog-top {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 22px 24px 0;
+}
+.dialog-top h2 { margin-bottom: 4px; }
+.dialog-body { padding: 8px 24px 24px; }
+.btn-close {
+  margin-left: auto; flex: none;
+  min-width: var(--tap); min-height: var(--tap);
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  background: none; border: 2px solid var(--ink); border-radius: var(--radius);
+  font-family: var(--font-text); font-size: 16px; font-weight: 600; color: var(--ink);
+  padding: 8px 14px; cursor: pointer;
+}
+.btn-close:hover { background: var(--rose-wash); border-color: var(--rose); color: var(--rose); }
+
+.form-ok {
+  border-left: 3px solid var(--rose); background: var(--blush);
+  padding: 14px 16px; font-size: 17px; margin-bottom: 16px;
+}
+
+/* --- 20. Collection page (Stories) --------------------------------------- */
+
+.page-head { padding: 40px 0 8px; }
+.page-head h1 { margin-bottom: 12px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 8px; }
+.filter {
+  min-height: var(--tap); padding: 9px 16px;
+  background: var(--paper); border: 1px solid var(--field-border);
+  border-radius: 999px; font-family: var(--font-text); font-size: 17px; font-weight: 500;
+  color: var(--ink); cursor: pointer;
+}
+.filter:hover { border-color: var(--rose); color: var(--rose); }
+.filter[aria-pressed="true"] {
+  background: var(--rose); border-color: var(--rose); color: #fff; font-weight: 600;
+}
+.result-count { font-size: 17px; color: var(--ink-soft); margin: 14px 0 28px; }
+
+.empty {
+  border: 1px dashed var(--field-border); border-radius: var(--radius);
+  background: var(--blush); padding: 44px 28px; text-align: center;
+}
+.empty h3 { margin-bottom: 10px; }
+.empty p { color: var(--ink-soft); max-width: 46ch; margin-left: auto; margin-right: auto; }
+.empty .btn { margin-top: 20px; }
+.empty[hidden] { display: none; }
+
+.pager { display: flex; gap: 10px; align-items: center; margin-top: 40px; }
+
+/* --- 21. Team ------------------------------------------------------------ */
+
+.team { display: grid; gap: 30px; }
+@media (min-width: 640px) { .team { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .team { grid-template-columns: repeat(3, 1fr); } }
+.member .shot img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius); }
+.member h3 { margin: 14px 0 2px; }
+.member .role { color: var(--rose); font-weight: 600; font-size: 17px; margin-bottom: 8px; }
+.member p { color: var(--ink-soft); font-size: 17px; }
+
+/* --- 22. Event page ------------------------------------------------------ */
+
+.event-hero { position: relative; }
+.event-hero img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+@media (min-width: 900px) {
+  .event-hero img { aspect-ratio: 21 / 8; max-height: 42vh; }
+}
+.event-hero .titleblock { padding: 26px 0 0; }
+.event-hero .titleblock h1 { margin-bottom: 8px; }
+.event-hero .when { font-size: 21px; font-weight: 600; }
+
+.facts-panel {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--paper); padding: 26px 24px;
+}
+.facts-list { display: grid; gap: 0; margin: 0 0 22px; }
+.facts-list > div {
+  display: grid; grid-template-columns: 108px 1fr; gap: 14px;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.facts-list > div:first-child { padding-top: 0; }
+.facts-list dt { font-weight: 600; }
+.facts-list dd { margin: 0; }
+
+.expect { display: grid; gap: 34px; }
+.expect-item { display: grid; gap: 18px; align-items: center; }
+@media (min-width: 780px) {
+  .expect-item { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .expect-item:nth-child(even) .shot { order: 2; }
+}
+.expect-item .shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); }
+
+.qa { display: grid; gap: 26px; }
+.qa h3 { margin-bottom: 6px; }
+.qa p { color: var(--ink-soft); }
+
+/* Mobile sticky ticket bar — thumb-reachable from any scroll position */
+.ticket-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px var(--gutter);
+  display: flex; align-items: center; gap: 14px;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+}
+.ticket-bar .when { font-size: 16px; font-weight: 600; line-height: 1.25; }
+.ticket-bar .btn { margin-left: auto; flex: none; }
+@media (min-width: 900px) { .ticket-bar { display: none; } }
+@media (max-width: 899px) { body.has-ticket-bar { padding-bottom: 78px; } }
+
+/* --- 23. Wireframe-only preview control.
+        Deliberately styled to look like a tool, not like the site. -------- */
+
+.wf-tool {
+  position: fixed; right: 12px; bottom: 12px; z-index: 200;
+  background: #14202B; color: #E8F0F7;
+  border: 1px solid #2E4256; border-radius: 6px;
+  padding: 10px 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px; line-height: 1.4; max-width: 250px;
+}
+.wf-tool .wf-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.wf-tool b { font-size: 11px; letter-spacing: .08em; color: #8FB6D6; }
+.wf-hide, .wf-show {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
+  cursor: pointer; background: #23394D; color: #E8F0F7;
+  border: 1px solid #3C5A73; border-radius: 4px; padding: 6px 10px; min-height: 32px;
+}
+.wf-hide { margin-left: auto; }
+.wf-show {
+  position: fixed; right: 12px; bottom: 12px; z-index: 200; min-height: 36px;
+}
+.wf-show[hidden] { display: none; }
+.wf-tool[hidden] { display: none; }
+@media (max-width: 899px) { .wf-show { bottom: 84px; } }
+.wf-tool button {
+  font-family: inherit; font-size: 12px; cursor: pointer;
+  background: #23394D; color: #E8F0F7; border: 1px solid #3C5A73; border-radius: 4px;
+  padding: 7px 10px; min-height: 34px; width: 100%; text-align: left;
+}
+.wf-tool button:hover { background: #2F4A63; }
+.wf-tool :focus-visible { outline: 3px solid #8FB6D6; outline-offset: 2px; }
+@media (max-width: 899px) { .wf-tool { bottom: 84px; } }
+body.menu-open .wf-tool { display: none; }
+
+/* --- 24. Motion — respected, and there is very little of it -------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .nav-link, .filter, .story h3 a, .socials a { transition: background-color .15s ease, color .15s ease, border-color .15s ease; }
+  dialog.contact[open] { animation: dlg .18s ease-out; }
+  @keyframes dlg { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important; scroll-behavior: auto !important;
+  }
+}
+
+/* --- 25. Print / fallback ------------------------------------------------ */
+@media print { .wf-tool, .ticket-bar, .event-bar { display: none !important; } }
