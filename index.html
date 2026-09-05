@@ -29,11 +29,12 @@ h1{font-family:'Fraunces',Georgia,serif;font-weight:400;font-variation-settings:
 .eyebrow{font-size:1rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-deep);margin:0}
 .intro{color:var(--ink-soft);max-width:56ch;margin-top:20px}
 .pair{display:grid;gap:clamp(24px,4vw,40px);margin-top:clamp(36px,6vw,64px)}
-@media(min-width:820px){.pair{grid-template-columns:1fr 1fr}}
+@media(min-width:760px){.pair{grid-template-columns:1fr 1fr}}
+@media(min-width:1100px){.pair{grid-template-columns:repeat(4,1fr)}}
 .pick{display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--hairline);
   background:var(--bone);transition:transform 240ms var(--ease),border-color 240ms var(--ease)}
 .pick:hover,.pick:focus-visible{transform:translateY(-4px);border-color:var(--ink)}
-.pick figure{margin:0;aspect-ratio:16/10;overflow:hidden;background:var(--shell)}
+.pick figure{margin:0;aspect-ratio:4/3;overflow:hidden;background:var(--shell)}
 .pick img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 900ms var(--ease)}
 .pick:hover img{transform:scale(1.03)}
 .pick .txt{padding:clamp(20px,3vw,30px)}
@@ -52,9 +53,9 @@ h1{font-family:'Fraunces',Georgia,serif;font-weight:400;font-variation-settings:
 <body>
 <main class="wrap">
   <p class="eyebrow">SHUMI · private preview</p>
-  <h1>Two directions, built to be walked through.</h1>
+  <h1>Four directions, built to be walked through.</h1>
   <p class="intro">
-    Both are the same brief, the same brand and the same words. They disagree about what a
+    All four are the same brief and the same words. They disagree about what a
     room full of women should feel like on a screen. Open each on your phone before you decide.
   </p>
 
@@ -73,6 +74,22 @@ h1{font-family:'Fraunces',Georgia,serif;font-weight:400;font-variation-settings:
         <h2>Direction B — Circle</h2>
         <p>Bright, confident, contemporary. Everything arcs instead of squares, the type carries the page, and the film sits in an arch beside it.</p>
         <span class="go">Open Direction B</span>
+      </div>
+    </a>
+    <a class="pick" href="c/">
+      <figure><img src="c/assets/window.jpg" width="1800" height="941" alt="A woman standing at a window in late afternoon light."></figure>
+      <div class="txt">
+        <h2>Direction C — Stage</h2>
+        <p>One idea per screen, advancing as you scroll. No pink at all: aubergine, brass and one clay accent. The opening film is scrubbed by your scroll.</p>
+        <span class="go">Open Direction C</span>
+      </div>
+    </a>
+    <a class="pick" href="d/">
+      <figure><img src="d/assets/elder.jpg" width="1200" height="1721" alt="A woman in her sixties mid-laugh, caught unposed in warm light."></figure>
+      <div class="txt">
+        <h2>Direction D — Act</h2>
+        <p>Built to convert: the statement, then three ways to act while you are still reading, then the people, the method, and the proof.</p>
+        <span class="go">Open Direction D</span>
       </div>
     </a>
   </div>
