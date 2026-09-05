@@ -10,7 +10,7 @@
 <meta property="og:title" content="SHUMI — Women's Empowerment">
 <meta property="og:description" content="A place for women to gather, grow and belong. Women's Empowerment Event, 11 October 2026.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c3 3 8 3 12 2v11c0 8-6 11-12 13C10 27 4 24 4 16V5c4 1 9 1 12-2Z' fill='none' stroke='%23A8412A' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 190'%3E%3Cpath d='M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z' fill='%23A8412A'/%3E%3Cpath d='M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z' fill='none' stroke='%23A8412A' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/instrument.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
@@ -397,6 +397,15 @@ a{color:inherit}
   .js .rule{transform:none}
   .js .mq-track{animation:none}
 }
+
+/* --- The SHUMI crest. 9ja: vector interpretation of the client's supplied logo —
+   swap in their master artwork (SVG preferred) before anything ships. --- */
+.crest{width:32px;height:auto;flex:none}
+.crest .f,.crest .w{fill:var(--brass)}
+.crest .s{stroke:var(--brass)}
+.lockup{width:124px;height:auto;display:block}
+.lockup .f,.lockup .w{fill:var(--brass)}
+.lockup .s{stroke:var(--brass)}
 </style>
 </head>
 <body>
@@ -405,12 +414,7 @@ a{color:inherit}
 <header class="hdr" id="hdr">
   <div class="wrap">
     <a class="mark" href="#top" aria-label="SHUMI — home">
-      <svg class="mark-art" viewBox="0 0 64 64" aria-hidden="true">
-        <!-- 9ja: vector interpretation of the supplied SHUMI crest — swap for the master file -->
-        <path class="fin" fill-rule="evenodd" d="M32 3.5c-3.2 4.2-5.4 7.4-5.4 10.2a5.4 5.4 0 1 0 10.8 0c0-2.8-2.2-6-5.4-10.2Zm0 7.3a2.6 2.6 0 1 1 0 5.2 2.6 2.6 0 0 1 0-5.2Z"/>
-        <path class="sh" d="M27.4 16.6C22.6 21 14.6 21.4 8.2 16.4v14.2C8.2 44 16.4 52.2 32 59.5 47.6 52.2 55.8 44 55.8 30.6V16.4c-6.4 5-14.4 4.6-19.2.2" fill="none" stroke-width="3.2" stroke-linejoin="round"/>
-        <path class="sw" d="M5.5 43.2C21 52.4 42 47.6 59 36.8 44.5 51.6 22 55.4 5.5 43.2Z"/>
-      </svg>
+      <svg class="crest" viewBox="0 0 200 190" aria-hidden="true"><path class="f" fill-rule="evenodd" d="M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z"/><path class="s" fill="none" stroke-width="12" stroke-linejoin="round" d="M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z"/><path class="w" d="M12 114c50 21 128 17 182-18-48 43-134 47-182 18Z"/></svg>
       <b>SHUMI</b>
     </a>
     <nav class="nav" aria-label="Primary">
@@ -427,7 +431,7 @@ a{color:inherit}
 
 <div class="m-panel on-dark" id="mPanel" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="m-top">
-    <span class="mark"><b>SHUMI</b></span>
+    <span class="mark"><svg class="crest" viewBox="0 0 200 190" aria-hidden="true"><path class="f" fill-rule="evenodd" d="M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z"/><path class="s" fill="none" stroke-width="12" stroke-linejoin="round" d="M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z"/><path class="w" d="M12 114c50 21 128 17 182-18-48 43-134 47-182 18Z"/></svg><b>SHUMI</b></span>
     <button class="menu-btn" id="menuClose" style="margin-left:auto">Close</button>
   </div>
   <nav class="m-links" aria-label="Mobile">
@@ -664,12 +668,7 @@ a{color:inherit}
   <div class="wrap">
     <div class="ft-grid">
       <div>
-        <svg class="lockup" viewBox="0 0 160 150" aria-label="SHUMI" role="img">
-          <path fill="var(--brass)" fill-rule="evenodd" d="M80 4c-8 10.4-13.4 18.3-13.4 25.2a13.4 13.4 0 1 0 26.8 0C93.4 22.3 88 14.4 80 4Zm0 18a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13Z"/>
-          <path fill="none" stroke="var(--brass)" stroke-width="7" stroke-linejoin="round" d="M68.5 36.6C56.5 47.5 36.5 48.4 20.5 36v35.4C20.5 105 41 125.5 80 143.7 119 125.5 139.5 105 139.5 71.4V36c-16 12.4-36 11.5-48 .6"/>
-          <text x="80" y="92" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="46" letter-spacing="3" fill="var(--ivory)">SHUMI</text>
-          <path fill="var(--brass)" d="M14 104c38.5 23 91 11 128.5-16C106 125 50 134.5 14 104Z"/>
-        </svg>
+        <svg class="lockup" viewBox="0 0 200 190" role="img" aria-label="SHUMI"><path class="f" fill-rule="evenodd" d="M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z"/><path class="s" fill="none" stroke-width="10" stroke-linejoin="round" d="M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z"/><text x="100" y="116" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="46" fill="currentColor">SHUMI</text><path class="w" d="M12 114c50 21 128 17 182-18-48 43-134 47-182 18Z"/></svg>
         <p class="muted" style="margin-top:16px;max-width:34ch">A place for women to gather, grow and belong. Brockton, Massachusetts.</p>
       </div>
       <div><h3>Explore</h3><ul>
