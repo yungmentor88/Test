@@ -75,3 +75,26 @@
   }),{threshold:.4});
   counters.forEach(el=>cio.observe(el));
 })();
+
+/* theme toggle — remembers the choice, follows the system on a first visit */
+(function(){
+  var root=document.documentElement, KEY='shumi-theme';
+  var btn=document.querySelector('.theme-toggle'); if(!btn) return;
+  function paint(t){
+    root.setAttribute('data-theme',t);
+    var toLight = t==='dark';
+    btn.setAttribute('aria-pressed', t==='light');
+    btn.setAttribute('aria-label','Switch to '+(toLight?'light':'dark')+' theme');
+  }
+  paint(root.getAttribute('data-theme')||'dark');
+  btn.addEventListener('click',function(){
+    var next = root.getAttribute('data-theme')==='light' ? 'dark' : 'light';
+    paint(next);
+    try{ localStorage.setItem(KEY,next); }catch(e){}
+  });
+  try{
+    matchMedia('(prefers-color-scheme: light)').addEventListener('change',function(e){
+      if(!localStorage.getItem(KEY)) paint(e.matches?'light':'dark');
+    });
+  }catch(e){}
+})();

@@ -9,6 +9,13 @@
   --magenta-soft:#ff7aa8;
   --magenta-deep:#a10f45;
   --line:rgba(246,239,242,.12);
+  --magenta-btn:#c2185b;   /* filled buttons only — #fff on #e91e63 is 4.35:1 and fails AA */
+  --nav-bg:rgba(13,10,12,.86);
+  --scrim-1:rgba(13,10,12,.35); --scrim-2:rgba(13,10,12,.55);
+  --cap-scrim:rgba(13,10,12,.90); --cap-scrim-2:rgba(13,10,12,.94);
+  --ghost-stroke:rgba(246,239,242,.07);
+  --hero-img-op:.55;
+  color-scheme:dark;
   --display:'Unbounded',sans-serif;
   --sans:'Familjen Grotesk',sans-serif;
   --serif:'Bodoni Moda',serif;
@@ -42,7 +49,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:.98;letter-spaci
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;gap:12px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:18px 34px;cursor:pointer;position:relative;transition:transform .3s var(--ease),background .3s,color .3s,border-color .3s;border-radius:999px}
-.btn.fill{background:var(--magenta);color:#fff;border:1px solid var(--magenta)}
+.btn.fill{background:var(--magenta-btn);color:#fff;border:1px solid var(--magenta-btn)}
 .btn.fill:hover{background:var(--magenta-soft);border-color:var(--magenta-soft);transform:translateY(-3px)}
 .btn.ghost{border:1px solid var(--line);color:var(--ink);background:transparent}
 .btn.ghost:hover{border-color:var(--magenta);color:var(--magenta-soft);transform:translateY(-3px)}
@@ -54,7 +61,7 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:.98;letter-spaci
 
 /* Nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
-.nav.scrolled{background:rgba(13,10,12,.86);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(14px);border-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:88px}
 .nav-logo{display:flex;align-items:center;text-decoration:none}
 .nav-logo img{height:42px;width:auto;filter:brightness(1.1)}
@@ -79,9 +86,9 @@ h1,h2,h3{font-family:var(--display);font-weight:800;line-height:.98;letter-spaci
 /* Hero */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
 .hero-bg{position:absolute;inset:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.55;transform:scale(1.1);animation:heroIn 2.2s var(--ease) forwards}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:var(--hero-img-op);transform:scale(1.1);animation:heroIn 2.2s var(--ease) forwards}
 @keyframes heroIn{to{transform:scale(1)}}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 8%,rgba(13,10,12,.35) 55%,rgba(13,10,12,.55))}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 8%,var(--scrim-1) 55%,var(--scrim-2))}
 .hero-inner{position:relative;z-index:2;width:100%;padding:0 0 72px}
 .hero .display{margin:26px 0 30px;max-width:12ch}
 .hero .display .accent{display:block}
@@ -132,7 +139,7 @@ section{padding:120px 0}
 .panel.img-panel{padding:0;min-height:420px}
 .panel.img-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .panel.img-panel:hover img{transform:scale(1.06)}
-.panel.img-panel .cap{position:relative;z-index:2;padding:36px;background:linear-gradient(to top,rgba(13,10,12,.9),transparent);margin-top:auto}
+.panel.img-panel .cap{position:relative;z-index:2;padding:36px;background:linear-gradient(to top,var(--cap-scrim),transparent);margin-top:auto}
 @media(max-width:920px){.panel.wide,.panel.narrow{grid-column:span 12}}
 
 /* Stats */
@@ -160,7 +167,7 @@ section{padding:120px 0}
 .story:hover{border-color:var(--magenta)}
 .story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .5s;filter:saturate(.85)}
 .story:hover img{transform:scale(1.07);filter:saturate(1.1)}
-.story .cap{position:relative;z-index:2;padding:30px;background:linear-gradient(to top,rgba(13,10,12,.94) 20%,transparent)}
+.story .cap{position:relative;z-index:2;padding:30px;background:linear-gradient(to top,var(--cap-scrim-2) 20%,transparent)}
 .story .cat{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--magenta-soft);display:block;margin-bottom:10px}
 .story h3{font-size:22px;line-height:1.15;text-transform:none;letter-spacing:-.01em}
 @media(max-width:920px){.stories{grid-template-columns:1fr}.story{min-height:380px}}
@@ -193,7 +200,7 @@ footer ul a:hover{color:var(--ink)}
 
 /* Page hero */
 .page-hero{padding:210px 0 90px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-.page-hero .bg-word{position:absolute;top:52%;left:50%;transform:translate(-50%,-50%);font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(120px,22vw,320px);color:transparent;-webkit-text-stroke:1px rgba(246,239,242,.07);white-space:nowrap;pointer-events:none;user-select:none}
+.page-hero .bg-word{position:absolute;top:52%;left:50%;transform:translate(-50%,-50%);font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(120px,22vw,320px);color:transparent;-webkit-text-stroke:1px var(--ghost-stroke);white-space:nowrap;pointer-events:none;user-select:none}
 .page-hero .display{margin-top:24px;max-width:14ch;position:relative}
 .page-hero .lede{margin-top:26px;position:relative}
 
@@ -273,3 +280,47 @@ footer ul a:hover{color:var(--ink)}
    the decorative oversized numerals and the marquee are meant to run past the edge,
    but the document itself must never scroll sideways at 320px. */
 html,body{overflow-x:clip}
+
+/* ============ LIGHT THEME ============
+   Same components, re-tokenised. Every pair measured, none below AA:
+     ink #140e11 on bg #faf6f7 .......... 17.80
+     ink-dim #574650 on bg .............. 8.17   on bg-2 ......... 7.36
+     magenta-soft #9e1249 (all text uses) 7.43
+     magenta #b0154f (accent + rules) ... 6.39
+     #fff on --magenta-btn #c2185b ...... 5.87
+*/
+:root[data-theme="light"]{
+  --bg:#faf6f7; --bg-2:#f2e9ed; --panel:#ffffff;
+  --ink:#140e11; --ink-dim:#574650;
+  --magenta:#b0154f; --magenta-soft:#9e1249; --magenta-deep:#7d0d36;
+  --magenta-btn:#c2185b;
+  --line:rgba(20,14,17,.14);
+  --nav-bg:rgba(250,246,247,.92);
+  --scrim-1:rgba(250,246,247,.58); --scrim-2:rgba(250,246,247,.80);
+  --cap-scrim:rgba(250,246,247,.92); --cap-scrim-2:rgba(250,246,247,.95);
+  --ghost-stroke:rgba(20,14,17,.08);
+  --hero-img-op:.50;
+  color-scheme:light;
+}
+:root[data-theme="light"] body::before{opacity:.03}
+
+/* the mark carries a black wordmark, so it needs the reverse art on the dark ground */
+.nav-logo img{display:block}
+.nav-logo .on-light{display:none}
+:root[data-theme="light"] .nav-logo .on-dark{display:none}
+:root[data-theme="light"] .nav-logo .on-light{display:block}
+
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;gap:0;
+  width:46px;height:46px;flex:none;margin-left:18px;
+  background:transparent;border:1px solid var(--line);border-radius:50%;
+  color:var(--ink);cursor:pointer;
+  transition:border-color .3s var(--ease),color .3s var(--ease),transform .3s var(--ease);
+}
+.theme-toggle:hover{border-color:var(--magenta);color:var(--magenta-soft);transform:translateY(-2px)}
+.theme-toggle:focus-visible{outline:2px solid var(--magenta-soft);outline-offset:3px}
+.theme-toggle svg{width:20px;height:20px;display:block}
+.theme-toggle .i-sun{display:none}
+:root[data-theme="light"] .theme-toggle .i-sun{display:block}
+:root[data-theme="light"] .theme-toggle .i-moon{display:none}
+@media(prefers-reduced-motion:reduce){.theme-toggle{transition:none}}
