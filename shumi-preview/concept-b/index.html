@@ -89,7 +89,7 @@ a{color:inherit}
 .lead{font-size:var(--step-1);line-height:1.5;color:var(--ink-soft)}
 .muted{color:var(--ink-muted)}
 .skip{position:absolute;left:-9999px}
-.skip:focus{left:12px;top:12px;z-index:200;background:var(--ink);color:var(--bone);padding:12px 18px}
+.skip:focus{left:12px;top:12px;z-index:200;background:var(--ink);color:var(--bone);padding:12px 18px;display:inline-flex;align-items:center;min-height:44px}
 section[id]{scroll-margin-top:calc(var(--hd) + 8px)}
 
 /* --- Buttons: the fill arcs in from the left --- */
@@ -192,10 +192,10 @@ section{padding-block:var(--section)}
 
 /* --- 1 · HERO: full viewport. Type on the left, an arch of moving film on the right. --- */
 .hero{
-  position:relative;height:100svh;min-height:560px;max-height:1040px;
-  padding-top:var(--hd);display:flex;flex-direction:column;overflow:clip;
+  position:relative;min-height:100svh;
+  padding:var(--hd) 0 8px;display:flex;flex-direction:column;overflow:clip;
 }
-@supports not (height:100svh){.hero{height:100vh}}
+@supports not (min-height:100svh){.hero{min-height:100vh}}
 .hero-in{flex:1;display:grid;align-items:center;width:var(--container);margin-inline:auto;
   grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--col-gap);padding-block:clamp(16px,3vh,40px)}
 @media(min-width:900px){.hero-in{grid-template-columns:repeat(12,minmax(0,1fr))}}
@@ -206,21 +206,14 @@ section{padding-block:var(--section)}
 .hero .lead{margin-top:clamp(14px,2.4vh,26px);max-width:38ch}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px 16px;margin-top:clamp(20px,3.4vh,34px)}
 /* the arch column: film, clipped, running off the bottom of the hero into the band below */
-.hero-film{display:none}
+.hero-film{grid-column:1/-1;position:relative;height:clamp(180px,26vh,250px);margin-top:20px}
+.hero-film .arc{position:absolute;inset:0;background:var(--ink-panel)}
+.hero-film video,.hero-film img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.js .hero-film video,.js .hero-film img{animation:drift 36s var(--ease-quiet) infinite alternate;will-change:transform}
 @media(min-width:900px){
-  .hero-film{
-    display:block;grid-column:8/-1;position:relative;align-self:stretch;
-    margin-block:clamp(8px,2vh,26px);
-  }
-  .hero-film .arc{position:absolute;inset:0;background:var(--ink-panel)}
-  .hero-film video,.hero-film img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
-  .js .hero-film video,.js .hero-film img{animation:drift 36s var(--ease-quiet) infinite alternate;will-change:transform}
+  .hero-film{grid-column:8/-1;height:auto;align-self:stretch;margin-block:clamp(8px,2vh,26px) 0}
 }
 @keyframes drift{from{transform:scale(1.03)}to{transform:scale(1.1) translate3d(1.2%,-1.4%,0)}}
-/* below 900px the film becomes a wide band under the copy — still moving, still full width */
-.hero-film-sm{margin-top:18px;height:clamp(180px,30vh,260px);background:var(--ink-panel)}
-.hero-film-sm video,.hero-film-sm img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
-@media(min-width:900px){.hero-film-sm{display:none}}
 /* counter rail */
 .hero-rail{
   width:var(--container);margin-inline:auto;display:flex;align-items:center;gap:14px 26px;
@@ -441,12 +434,6 @@ section{padding-block:var(--section)}
         <div class="hero-actions">
           <a class="btn btn-rose" href="#event"><span>Get tickets on Eventbrite</span><span class="arw" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-line" href="#about"><span>What SHUMI does</span></a>
-        </div>
-        <div class="hero-film-sm arc grain">
-          <video id="filmVidSm" poster="assets/hero-poster.jpg" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-            <source src="assets/hero-loop.webm" type="video/webm">
-            <source src="assets/hero-loop.mp4" type="video/mp4">
-          </video>
         </div>
       </div>
       <div class="hero-film">
