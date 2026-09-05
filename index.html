@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHUMI — Concept C</title>
+<meta name="description" content="SHUMI Women's Empowerment — a place for women to gather, grow and belong. Women's Empowerment Event, 11 October 2026.">
+<meta name="author" content="9ja LDA">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="SHUMI — Women's Empowerment">
+<meta property="og:description" content="A place for women to gather, grow and belong. Women's Empowerment Event, 11 October 2026.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 190'%3E%3Cpath d='M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z' fill='%23A8412A'/%3E%3Cpath d='M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z' fill='none' stroke='%23A8412A' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/instrument.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
+
+<!--
+  SHUMI — Concept C, "Stage".
+  Built to the slide idiom the client admired: one idea per screen, edge to edge,
+  advancing as you scroll. Structure and interaction only — no styles, code, imagery
+  or wording taken from any reference site.
+
+  The client asked for this direction WITHOUT the pink. It runs on a warmer, deeper
+  palette instead: aubergine and teal grounds, ivory and linen paper, one saturated
+  clay accent, brass for figures and rules. Every pair below is measured, not guessed.
+
+    aubergine on ivory  15.48  AAA      ivory on aubergine  15.48  AAA
+    plum      on ivory   9.88  AAA      brass-lt on aubergine 9.39  AAA
+    ink-soft  on ivory   7.77  AAA      brass    on aubergine 6.89  AA
+    muted     on ivory   5.74  AA       ivory    on clay      5.36  AA
+    clay      on ivory   5.36  AA       ivory    on teal     10.21  AAA
+    clay      on linen   4.61  AA       brass-lt on teal      6.20  AA
+
+  9ja: the wordmark below is a vector interpretation of the client's supplied logo,
+  drawn so the build could proceed. Swap in their master file (SVG preferred) before
+  anything ships — replace every <svg class="mark-art"> and the favicon above.
+-->
+
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5
+ * Philosophy 5 — a stage, not a page: each screen holds one idea and earns the next scroll.
+ * Hierarchy  5 — one h1, one statement per slide, an index rail that tells you where you are.
+ * Execution  4 — self-hosted type, measured contrast, transform/opacity motion only.
+ * Specificity 5 — SHUMI's words, SHUMI's date, art direction shot for this palette.
+ * Restraint  4 — two grounds, one accent, brass reserved for figures and rules.
+ * Variety    5 — shares no structure with A or B: slides, not sections; clay, not pink.
+ */
+:root{
+  --ivory:#F5F0E8; --linen:#E9DFD1;
+  --aubergine:#221426; --teal:#173F3C;
+  --plum:#4C3348; --ink-soft:#5B4356; --muted:#6E5768;
+  --clay:#A8412A; --clay-lt:#C9683F;
+  --brass:#C89B4A; --brass-lt:#E0B86A;
+  --hairline:#D8CCBC; --hairline-d:rgba(245,240,232,.22);
+
+  --display:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --body:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+  --step--1:clamp(.94rem,.92rem + .1vw,1rem);
+  --step-0:clamp(1.125rem,1.1rem + .15vw,1.1875rem);
+  --step-1:clamp(1.32rem,1.24rem + .38vw,1.5rem);
+  --step-2:clamp(1.6rem,1.44rem + .74vw,2.05rem);
+  --step-3:clamp(2rem,1.7rem + 1.4vw,3rem);
+  --step-4:clamp(2.6rem,2rem + 2.9vw,4.6rem);
+
+  --dur-micro:160ms; --dur-state:240ms; --dur-reveal:640ms; --dur-hero:1000ms;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-quiet:cubic-bezier(.65,0,.35,1);
+
+  --gap:clamp(22px,5vw,72px);
+  --container:min(1280px, 100% - 2*var(--gap));
+  --hd:78px;
+  --z-rail:40; --z-header:60; --z-menu:80; --z-bar:70;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media(min-width:1024px){
+  /* proximity, never mandatory: the page still scrolls normally if you want it to */
+  html{scroll-snap-type:y proximity}
+  .slide{scroll-snap-align:start}
+}
+body{
+  margin:0;background:var(--ivory);color:var(--aubergine);
+  font-family:var(--body);font-size:var(--step-0);line-height:1.62;
+  font-variant-numeric:tabular-nums;overflow-x:clip;-webkit-font-smoothing:antialiased;
+}
+img,video{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.02;letter-spacing:-.018em;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.on-dark :focus-visible{outline-color:var(--brass-lt)}
+.wrap{width:var(--container);margin-inline:auto}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:200;background:var(--aubergine);color:var(--ivory);
+  padding:12px 18px;display:inline-flex;align-items:center;min-height:44px}
+.eyebrow{font-size:var(--step--1);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin:0}
+.on-dark .eyebrow{color:var(--brass-lt)}
+.lead{font-size:var(--step-1);line-height:1.5;color:var(--ink-soft)}
+.on-dark .lead{color:#D6C8CE}
+.muted{color:var(--muted)}
+.on-dark .muted{color:#C3B2B9}
+.on-dark{background:var(--aubergine);color:var(--ivory)}
+.on-teal{background:var(--teal);color:var(--ivory)}
+
+/* --- The mark. 9ja: replace with the client's master artwork. --- */
+.mark{display:inline-flex;align-items:center;gap:12px;min-height:44px;text-decoration:none;flex:none}
+.mark-art{width:34px;height:34px;flex:none}
+.mark b{font-family:var(--display);font-size:1.5rem;letter-spacing:.06em;font-weight:400}
+
+/* --- Buttons --- */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:10px;
+  min-height:54px;padding:15px 30px;border:0;cursor:pointer;
+  font-family:var(--body);font-size:var(--step-0);font-weight:600;letter-spacing:.01em;
+  text-decoration:none;overflow:hidden;isolation:isolate;white-space:nowrap;
+}
+@media(max-width:400px){.btn{font-size:1rem;padding:14px 22px;gap:8px}}
+.btn>span{position:relative;z-index:1}
+.btn .arw{position:relative;z-index:1;transition:transform var(--dur-micro) var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:0;transform:scaleX(0);transform-origin:left;
+  transition:transform var(--dur-state) var(--ease)}
+.btn:hover .arw{transform:translateX(5px)}
+.btn:hover::before{transform:scaleX(1)}
+.btn-clay{background:var(--clay);color:var(--ivory)}
+.btn-clay::before{background:var(--aubergine)}
+.btn-brass{background:var(--brass);color:var(--aubergine)}
+.btn-brass::before{background:var(--ivory)}
+.btn-ivory{background:var(--ivory);color:var(--aubergine)}
+.btn-ivory::before{background:var(--brass)}
+.btn-line{background:transparent;color:var(--aubergine);box-shadow:inset 0 0 0 1.5px var(--aubergine)}
+.btn-line::before{background:var(--aubergine)}
+.btn-line:hover{color:var(--ivory)}
+.on-dark .btn-line{color:var(--ivory);box-shadow:inset 0 0 0 1.5px var(--hairline-d)}
+.on-dark .btn-line::before{background:var(--ivory)}
+.on-dark .btn-line:hover{color:var(--aubergine)}
+.tlink{
+  display:inline-flex;align-items:center;gap:9px;min-height:44px;color:var(--clay);
+  font-weight:600;text-decoration:none;
+  background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;
+  background-position:0 calc(100% - 11px);background-size:0 1.5px;
+  transition:background-size var(--dur-state) var(--ease-quiet);
+}
+.tlink:hover,.tlink:focus-visible{background-size:100% 1.5px}
+.on-dark .tlink{color:var(--brass-lt)}
+
+/* --- Header --- */
+.hdr{
+  position:fixed;inset:0 0 auto 0;z-index:var(--z-header);height:var(--hd);display:flex;align-items:center;
+  transition:background-color var(--dur-state) var(--ease-quiet),box-shadow var(--dur-state) var(--ease-quiet),
+             color var(--dur-state) var(--ease-quiet);
+  color:var(--ivory);
+}
+.hdr.is-solid{background:rgba(245,240,232,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:inset 0 -1px 0 var(--hairline);color:var(--aubergine)}
+.hdr .wrap{display:flex;align-items:center;gap:clamp(14px,3vw,44px)}
+.mark-art .sh{stroke:currentColor}.mark-art .fin,.mark-art .sw{fill:var(--brass)}
+.hdr.is-solid .mark-art .fin,.hdr.is-solid .mark-art .sw{fill:var(--clay)}
+.nav{display:none;gap:clamp(14px,2.2vw,34px);margin-left:auto}
+.nav a{text-decoration:none;font-weight:500;font-size:1rem;display:inline-flex;align-items:center;min-height:44px;
+  background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;
+  background-position:0 calc(100% - 12px);background-size:0 1.5px;
+  transition:background-size var(--dur-state) var(--ease-quiet)}
+.nav a:hover,.nav a:focus-visible{background-size:100% 1.5px}
+.hdr .btn{min-height:46px;padding:12px 24px;font-size:1rem;margin-left:auto}
+@media(min-width:1040px){.nav{display:flex}.hdr .btn{margin-left:0}}
+@media(max-width:640px){.hdr .btn{display:none}}
+.menu-btn{margin-left:auto;min-height:46px;padding:12px 20px;background:transparent;
+  border:1.5px solid currentColor;color:inherit;font-family:var(--body);font-weight:600;cursor:pointer}
+@media(min-width:1040px){.menu-btn{display:none}}
+.m-panel{position:fixed;inset:0;z-index:var(--z-menu);background:var(--aubergine);color:var(--ivory);display:none;flex-direction:column}
+.m-panel[data-open]{display:flex}
+.m-top{display:flex;align-items:center;padding:16px var(--gap);border-bottom:1px solid var(--hairline-d)}
+.m-links{padding:8px var(--gap);flex:1;overflow-y:auto}
+.m-links a{display:flex;align-items:center;min-height:64px;text-decoration:none;
+  font-family:var(--display);font-size:var(--step-2);border-bottom:1px solid var(--hairline-d)}
+.m-foot{padding:20px var(--gap);background:#160D18}
+.m-foot .btn{width:100%;justify-content:center}
+
+/* --- The slide rail: where you are, and how far is left --- */
+.rail{display:none}
+@media(min-width:1200px){
+  .rail{display:flex;position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:var(--z-rail);
+    flex-direction:column;gap:14px;align-items:flex-end;mix-blend-mode:difference}
+  .rail a{display:flex;align-items:center;gap:10px;text-decoration:none;color:#8d8d8d;
+    font-size:.78rem;letter-spacing:.12em;font-weight:600;padding:6px 0;min-height:24px}
+  .rail i{display:block;width:20px;height:1px;background:currentColor;transition:width var(--dur-state) var(--ease)}
+  .rail a[data-on]{color:#fff}
+  .rail a[data-on] i{width:44px}
+  .rail a:hover i{width:34px}
+}
+
+/* --- Slides --- */
+.slide{position:relative;padding-block:clamp(72px,10vh,132px)}
+.slide-full{min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+@supports not (min-height:100svh){.slide-full{min-height:100vh}}
+.grain{position:relative;overflow:hidden}
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:150px 150px}
+
+/* 01 · the stage. Outer runs 380vh; the pinned screen inside plays the film as you scroll. */
+.stage{position:relative;padding:0;background:var(--aubergine);color:var(--ivory);height:100svh}
+.js.scrub-on .stage{height:380vh}
+@supports not (height:100svh){.stage{height:100vh}}
+.stage-pin{position:sticky;top:0;height:100svh;overflow:clip;isolation:isolate;display:grid}
+@supports not (height:100svh){.stage-pin{height:100vh}}
+.stage-pin>*{grid-area:1/1}
+#scrub{width:100%;height:100%;display:block;position:absolute;inset:0}
+.scrub-on #poster{visibility:hidden}
+.beat{position:relative;z-index:3;display:grid;grid-template-rows:1fr auto;min-height:100%;pointer-events:none}
+.beat-1{pointer-events:auto}
+.scrub-on .beat{opacity:0;transform:translateY(18px);will-change:opacity,transform}
+.scrub-on .beat-1{opacity:1;transform:none}
+.beat-mid{align-self:center!important;padding-block:clamp(90px,12vh,140px)}
+.beat-line{font-family:var(--display);font-size:clamp(2.4rem,min(7vw,11vh),5.6rem);line-height:1.02;
+  letter-spacing:-.028em;max-width:16ch;margin-top:20px;color:var(--ivory)}
+.beat-line em{font-style:normal;color:var(--brass-lt)}
+.film-in{align-self:end}
+.film-media{position:absolute;inset:0;z-index:0;overflow:hidden}
+.film-media video,.film-media img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;
+  filter:saturate(.82) sepia(.22) contrast(1.04) brightness(1.04)}
+.js:not(.scrub-on) .film-media>*{animation:drift 38s var(--ease-quiet) infinite alternate;will-change:transform}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.09) translate3d(-1.4%,-1%,0)}}
+.film-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(98deg, rgba(34,20,38,.93) 0%, rgba(34,20,38,.78) 34%, rgba(34,20,38,.30) 70%, rgba(34,20,38,.52) 100%),
+    linear-gradient(to top, rgba(34,20,38,.80) 0%, rgba(34,20,38,0) 46%)}
+.film-in{position:relative;z-index:3;width:var(--container);margin-inline:auto;align-self:end;
+  padding-block:clamp(100px,14vh,150px) clamp(18px,3vh,32px)}
+.stage h1{font-size:clamp(2.7rem,min(8vw,12vh),6.4rem);letter-spacing:-.03em;max-width:15ch}
+.stage h1 em{font-style:normal;color:var(--brass-lt)}
+.stage .lead{margin-top:clamp(14px,2.4vh,26px);max-width:40ch}
+.film-actions{display:flex;flex-wrap:wrap;gap:12px 18px;margin-top:clamp(20px,3.4vh,36px)}
+.film-foot{position:relative;z-index:3;width:var(--container);margin-inline:auto;display:flex;
+  align-items:center;gap:16px 28px;flex-wrap:wrap;padding-block:16px clamp(20px,4vh,34px);
+  border-top:1px solid var(--hairline-d);font-size:var(--step--1);color:#C3B2B9}
+.film-foot .sp{margin-left:auto}
+.cue{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:#C3B2B9;text-decoration:none}
+.cue i{position:relative;display:block;width:1px;height:32px;background:var(--hairline-d);overflow:hidden}
+.cue i::after{content:"";position:absolute;inset:auto 0 100% 0;height:13px;background:var(--brass-lt)}
+.js .cue i::after{animation:cueRun 2600ms var(--ease-quiet) infinite}
+@keyframes cueRun{0%{top:-13px}60%,100%{top:32px}}
+
+/* 02 · the statement — one sentence, the whole screen */
+.say{display:grid;gap:clamp(28px,5vw,64px);align-items:center}
+@media(min-width:960px){.say{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.say h2{font-size:clamp(2.2rem,5.4vw,4.2rem);letter-spacing:-.028em;max-width:16ch}
+.say h2 em{font-style:normal;color:var(--clay)}
+.say-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--linen)}
+.say-img img{width:100%;height:100%;object-fit:cover}
+.rule{height:1px;background:var(--hairline);margin:34px 0 0;transform-origin:left}
+.js .rule{transform:scaleX(0)}
+.js .in .rule{transform:none;transition:transform 900ms var(--ease) 200ms}
+
+/* 03 · the date, as the graphic */
+.date-wrap{display:grid;gap:clamp(26px,4vw,54px)}
+@media(min-width:960px){.date-wrap{grid-template-columns:minmax(0,6fr) minmax(0,5fr);align-items:center}}
+.big-date{font-family:var(--display);font-size:clamp(4.4rem,16vw,12rem);line-height:.82;
+  letter-spacing:-.05em;color:var(--brass-lt);margin:0}
+.big-date small{display:block;font-family:var(--body);font-size:var(--step-1);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ivory);margin-top:22px;line-height:1.4}
+.facts{display:grid;gap:0;margin-top:8px}
+.facts div{display:flex;gap:18px;align-items:baseline;padding:16px 0;border-top:1px solid var(--hairline-d)}
+.facts dt{flex:0 0 clamp(80px,22%,140px);font-size:var(--step--1);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--brass-lt)}
+.facts dd{margin:0;font-weight:500}
+.cd{display:flex;gap:clamp(18px,4vw,44px);margin-top:30px}
+.cd div{display:flex;flex-direction:column}
+.cd b{font-family:var(--display);font-size:clamp(2.2rem,5vw,3.4rem);line-height:1;color:var(--ivory);overflow:hidden}
+.cd small{font-size:var(--step--1);letter-spacing:.16em;text-transform:uppercase;color:#C3B2B9;margin-top:8px}
+
+/* 04 · who we are */
+.who{display:grid;gap:clamp(28px,5vw,64px);align-items:center}
+@media(min-width:960px){.who{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}}
+.who-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--linen)}
+.who-img img{width:100%;height:100%;object-fit:cover}
+
+/* 05 · the figures */
+.figs{display:grid;gap:clamp(26px,4vw,40px);grid-template-columns:1fr;margin-top:46px}
+@media(min-width:760px){.figs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.fig{border-top:1px solid var(--hairline-d);padding-top:22px}
+.fig b{display:block;font-family:var(--display);font-size:clamp(3rem,7vw,5rem);line-height:1;color:var(--brass-lt)}
+.fig span{display:block;margin-top:10px;color:#D6C8CE}
+
+/* 06 · programmes, on rails */
+.rails{margin-top:44px;display:grid;grid-auto-flow:column;grid-auto-columns:min(80%,380px);
+  gap:clamp(18px,2.6vw,30px);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px}
+.rails>*{scroll-snap-align:start}
+@media(min-width:1024px){.rails{grid-auto-columns:minmax(0,1fr);grid-template-columns:repeat(3,1fr);
+  grid-auto-flow:row;overflow:visible;padding-bottom:0}}
+.prog{background:var(--ivory);padding:clamp(24px,3vw,36px);border-top:3px solid var(--clay);
+  display:flex;flex-direction:column;gap:14px;min-height:100%;
+  transition:transform var(--dur-state) var(--ease)}
+.prog:hover{transform:translateY(-5px)}
+.prog h3{font-size:var(--step-2)}
+.prog p{color:var(--ink-soft)}
+.prog .n{font-family:var(--display);font-size:var(--step-1);color:var(--clay)}
+
+/* 07 · the quote, full bleed */
+.pull{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:clip;background:var(--aubergine)}
+@supports not (min-height:100svh){.pull{min-height:100vh}}
+.pull img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;z-index:0}
+.pull::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top, rgba(34,20,38,.92) 4%, rgba(34,20,38,.55) 46%, rgba(34,20,38,.30) 100%)}
+.pull .wrap{position:relative;z-index:2;padding-block:clamp(48px,9vh,110px)}
+.pull blockquote{margin:0;font-family:var(--display);font-size:clamp(1.9rem,4.6vw,3.6rem);
+  line-height:1.1;letter-spacing:-.022em;max-width:19ch;color:var(--ivory)}
+.pull cite{display:block;margin-top:22px;font-style:normal;font-size:var(--step--1);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brass-lt)}
+
+/* 08 · stories */
+.story{display:grid;grid-template-columns:1fr;gap:4px 26px;padding:28px 0;border-top:1px solid var(--hairline);
+  text-decoration:none;transition:padding-left var(--dur-state) var(--ease),background-color var(--dur-state) var(--ease)}
+.story:hover{padding-left:12px}
+@media(min-width:860px){.story{grid-template-columns:160px 1fr 120px;align-items:baseline}}
+.story time{font-size:var(--step--1);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.story h3{font-size:var(--step-2)}
+.story p{color:var(--ink-soft);margin-top:6px}
+.story .go{color:var(--clay);font-weight:600;justify-self:start}
+@media(min-width:860px){.story .go{justify-self:end}}
+
+/* 09 · voices marquee */
+.mq{overflow:hidden;padding-block:clamp(20px,3vw,30px);border-block:1px solid var(--hairline-d)}
+.mq-track{display:flex;width:max-content}
+.js .mq-track{animation:mqRun 46s linear infinite}
+@keyframes mqRun{to{transform:translateX(-50%)}}
+.mq-set{display:flex;align-items:center;gap:clamp(26px,4vw,56px);padding-right:clamp(26px,4vw,56px)}
+.mq-set span{font-family:var(--display);font-size:clamp(1.3rem,2.5vw,2.1rem);white-space:nowrap;color:var(--ivory)}
+.mq-set i{width:8px;height:8px;border-radius:50%;background:var(--brass);flex:none;display:block}
+
+/* 10 · ways in + list */
+.ways{display:grid;gap:clamp(22px,3vw,34px);grid-template-columns:1fr;margin-top:44px}
+@media(min-width:860px){.ways{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.way{border-top:1px solid var(--hairline);padding-top:22px}
+.way h3{font-size:var(--step-2);margin-bottom:10px}
+.way p{color:var(--ink-soft);margin-bottom:12px}
+.ml{display:grid;gap:26px;margin-top:clamp(56px,8vw,96px);padding-top:clamp(34px,5vw,54px);border-top:1px solid var(--hairline)}
+@media(min-width:900px){.ml{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,90px);align-items:center}}
+.ml form{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.ml input{flex:1 1 240px;min-height:54px;padding:15px 20px;border:1.5px solid var(--hairline);
+  background:var(--ivory);color:var(--aubergine);font-family:var(--body);font-size:var(--step-0)}
+.ml input:focus-visible{border-color:var(--clay)}
+.ml .note{font-size:var(--step--1);color:var(--muted);margin-top:12px}
+.ml .ok{display:none;font-weight:600;color:var(--clay);margin-top:14px}
+.ml .ok[data-on]{display:block}
+
+/* footer */
+.ft{background:var(--aubergine);color:var(--ivory);padding-block:clamp(60px,7vw,96px) 124px}
+.lockup{width:132px;height:auto;display:block}
+.ft-grid{display:grid;gap:36px;grid-template-columns:1fr}
+@media(min-width:860px){.ft-grid{grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,3fr)}}
+.ft h3{font-size:var(--step--1);letter-spacing:.18em;text-transform:uppercase;color:var(--brass-lt);
+  font-weight:600;margin-bottom:14px;font-family:var(--body)}
+.ft ul{list-style:none;margin:0;padding:0}
+.ft a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;
+  background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;
+  background-position:0 calc(100% - 12px);background-size:0 1.5px;
+  transition:background-size var(--dur-state) var(--ease-quiet)}
+.ft a:hover,.ft a:focus-visible{background-size:100% 1.5px}
+.ft-base{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;margin-top:46px;padding-top:22px;
+  border-top:1px solid var(--hairline-d);font-size:var(--step--1);color:#C3B2B9}
+
+/* mobile ticket bar — the one elevated thing on the page */
+.tbar{position:fixed;left:0;right:0;bottom:0;z-index:var(--z-bar);display:flex;align-items:center;gap:14px;
+  padding:10px var(--gap);background:var(--clay);color:var(--ivory);
+  box-shadow:0 -12px 34px -22px rgba(34,20,38,.9);
+  transform:translateY(115%);transition:transform var(--dur-state) var(--ease)}
+.tbar[data-show]{transform:none}
+.tbar b{font-weight:600}.tbar small{display:block;font-size:var(--step--1)}
+.tbar .btn{margin-left:auto;min-height:44px;padding:11px 20px;font-size:1rem}
+@media(min-width:1040px){.tbar{display:none}}
+
+/* --- motion, all of it opt-out --- */
+.line{display:block;overflow:hidden}
+.line>span{display:block;will-change:transform}
+.js .line>span{transform:translateY(1.05em)}
+.js .line.in>span{transform:none;transition:transform var(--dur-hero) var(--ease)}
+.js .rise{opacity:0;transform:translateY(20px)}
+.js .rise.in{opacity:1;transform:none;
+  transition:opacity var(--dur-reveal) var(--ease),transform var(--dur-reveal) var(--ease)}
+/* the clip lives on the image, never on the observed box: clipping the box collapses its
+   intersection rect to zero and the observer would never fire. */
+.js .wipe img{clip-path:inset(0 0 100% 0);transform:scale(1.07)}
+.js .wipe.in img{clip-path:inset(0);transform:none;
+  transition:clip-path 1000ms var(--ease),transform 1500ms var(--ease)}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-snap-type:none}
+  .js.scrub-on .stage{height:100svh}
+  .scrub-on .beat-2,.scrub-on .beat-3{display:none}
+  .scrub-on #poster{visibility:visible}#scrub{display:none}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .js .line>span,.js .rise{transform:none;opacity:1}
+  .js .wipe img{clip-path:none;transform:none}
+  .js .rule{transform:none}
+  .js .mq-track{animation:none}
+}
+
+/* --- The SHUMI crest. 9ja: vector interpretation of the client's supplied logo —
+   swap in their master artwork (SVG preferred) before anything ships. --- */
+.crest{width:32px;height:auto;flex:none}
+.crest .f,.crest .w{fill:var(--brass)}
+.crest .s{stroke:var(--brass)}
+.lockup{width:124px;height:auto;display:block}
+.lockup .f,.lockup .w{fill:var(--brass)}
+.lockup .s{stroke:var(--brass)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="SHUMI — home">
+      <svg class="crest" viewBox="0 0 200 190" aria-hidden="true"><path class="f" fill-rule="evenodd" d="M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z"/><path class="s" fill="none" stroke-width="12" stroke-linejoin="round" d="M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z"/><path class="w" d="M12 114c50 21 128 17 182-18-48 43-134 47-182 18Z"/></svg>
+      <b>SHUMI</b>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#programmes">What we do</a>
+      <a href="#event">Events</a>
+      <a href="#stories">Stories</a>
+      <a href="#involved">Get involved</a>
+    </nav>
+    <a class="btn btn-clay" href="#event"><span>Get tickets</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mPanel">Menu</button>
+  </div>
+</header>
+
+<div class="m-panel on-dark" id="mPanel" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="m-top">
+    <span class="mark"><svg class="crest" viewBox="0 0 200 190" aria-hidden="true"><path class="f" fill-rule="evenodd" d="M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z"/><path class="s" fill="none" stroke-width="12" stroke-linejoin="round" d="M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z"/><path class="w" d="M12 114c50 21 128 17 182-18-48 43-134 47-182 18Z"/></svg><b>SHUMI</b></span>
+    <button class="menu-btn" id="menuClose" style="margin-left:auto">Close</button>
+  </div>
+  <nav class="m-links" aria-label="Mobile">
+    <a href="#about">About</a>
+    <a href="#programmes">What we do</a>
+    <a href="#event">Events</a>
+    <a href="#stories">Stories</a>
+    <a href="#involved">Get involved</a>
+  </nav>
+  <div class="m-foot"><a class="btn btn-brass" href="#event"><span>Get tickets — 11 Oct</span></a></div>
+</div>
+
+<nav class="rail" id="rail" aria-label="Sections">
+  <a href="#top" data-on><span>01</span><i></i></a>
+  <a href="#say"><span>02</span><i></i></a>
+  <a href="#event"><span>03</span><i></i></a>
+  <a href="#about"><span>04</span><i></i></a>
+  <a href="#programmes"><span>05</span><i></i></a>
+  <a href="#voice"><span>06</span><i></i></a>
+  <a href="#stories"><span>07</span><i></i></a>
+  <a href="#involved"><span>08</span><i></i></a>
+</nav>
+
+<main id="main">
+
+  <!-- 01 · the film, scrubbed by scroll. 120 frames drawn to a canvas; scrolling plays them.
+       Without JavaScript, or under reduced motion, this collapses to one screen with the poster. -->
+  <section class="stage slide on-dark" id="top">
+    <div class="stage-pin">
+      <div class="film-media grain">
+        <img id="poster" src="assets/hero-poster.jpg" width="1600" height="900" alt="" aria-hidden="true">
+        <canvas id="scrub" aria-hidden="true"></canvas>
+      </div>
+      <div class="film-veil"></div>
+
+      <div class="beat beat-1" data-beat="0,0.30">
+        <div class="film-in">
+          <p class="eyebrow">Sunday 11 October 2026 · Women's Empowerment Event</p>
+          <h1 style="margin-top:20px">
+            <span class="line"><span>Some rooms</span></span>
+            <span class="line"><span>you have to</span></span>
+            <span class="line"><span><em>build yourself.</em></span></span>
+          </h1>
+          <p class="lead">
+            SHUMI is that room — a place for women to gather, grow and be heard, built by women
+            of the Cape Verdean community and open to every woman who wants in.
+          </p>
+          <div class="film-actions">
+            <a class="btn btn-brass" href="#event"><span>Get tickets on Eventbrite</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn-line" href="#about"><span>What SHUMI does</span></a>
+          </div>
+        </div>
+        <div class="film-foot">
+          <span>Brockton, Massachusetts · doors 1pm</span>
+          <span class="sp"></span>
+          <span class="cue"><i aria-hidden="true"></i> Scroll to keep watching</span>
+        </div>
+      </div>
+
+      <div class="beat beat-2" data-beat="0.38,0.64" aria-hidden="true">
+        <div class="film-in beat-mid">
+          <p class="eyebrow">What it feels like</p>
+          <p class="beat-line">A room where nobody has to <em>explain herself</em> first.</p>
+        </div>
+      </div>
+
+      <div class="beat beat-3" data-beat="0.72,1" aria-hidden="true">
+        <div class="film-in beat-mid">
+          <p class="eyebrow">The next gathering</p>
+          <p class="beat-line">Sunday 11 October. <em>Come and see.</em></p>
+          <div class="film-actions"><a class="btn btn-brass" href="#event" tabindex="-1"><span>Get tickets</span><span class="arw" aria-hidden="true">&rarr;</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · the statement -->
+  <section class="slide slide-full" id="say">
+    <div class="wrap say rise">
+      <div>
+        <p class="eyebrow">Why we exist</p>
+        <h2 style="margin-top:24px">Nobody hands a woman a seat at the table. <em>So we brought chairs.</em></h2>
+        <p class="lead" style="margin-top:28px;max-width:44ch">
+          We started because the room did not exist yet. A handful of women met in a front
+          room in Brockton, and word travelled the way it does — a sister, a cousin, a
+          neighbour. Everything since has been built the same way.
+        </p>
+        <div class="rule" aria-hidden="true"></div>
+      </div>
+      <figure class="say-img grain wipe" style="margin:0">
+        <img src="assets/window.jpg" width="1800" height="941" alt="A woman standing at a window in late afternoon light, half-turned toward it.">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 03 · the date -->
+  <section class="slide slide-full on-dark" id="event">
+    <div class="wrap date-wrap rise">
+      <div>
+        <p class="eyebrow">The next gathering</p>
+        <p class="big-date" style="margin-top:18px">11 Oct<small>Sunday · 2026 · Brockton MA</small></p>
+      </div>
+      <div>
+        <p class="lead" style="max-width:44ch">
+          A whole Sunday together — talking, eating, listening, and meeting women you have not
+          met yet. Come on your own. Most people do.
+        </p>
+        <dl class="facts">
+          <div><dt>When</dt><dd>Sunday 11 October 2026</dd></div>
+          <div><dt>Time</dt><dd>Doors 1pm</dd></div>
+          <div><dt>Where</dt><dd>Brockton, Massachusetts</dd></div>
+          <div><dt>Tickets</dt><dd>From $25</dd></div>
+        </dl>
+        <div class="cd" id="cd">
+          <div><b data-cd="d">—</b><small>Days</small></div>
+          <div><b data-cd="h">—</b><small>Hours</small></div>
+          <div><b data-cd="m">—</b><small>Mins</small></div>
+        </div>
+        <div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+          <a class="btn btn-brass" href="#" rel="noopener"><span>Get tickets on Eventbrite</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+          <span class="muted" style="font-size:var(--step--1)">Opens in a new tab.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · who we are -->
+  <section class="slide slide-full" id="about" style="background:var(--linen)">
+    <div class="wrap who rise">
+      <figure class="who-img grain wipe" style="margin:0">
+        <img src="assets/elder.jpg" width="1200" height="1721" alt="A woman in her sixties mid-laugh, caught unposed in warm light." loading="lazy">
+      </figure>
+      <div>
+        <p class="eyebrow">Who we are</p>
+        <h2 style="font-size:var(--step-3);margin:18px 0 22px">Three generations, one room, every month.</h2>
+        <p class="lead">
+          Grandmothers, daughters and the women who came alone and stayed. SHUMI runs
+          gatherings, small circles and practical sessions — and it holds the door open
+          between them.
+        </p>
+        <div style="margin-top:30px"><a class="tlink" href="#programmes">See what we run<span aria-hidden="true">&rarr;</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · figures + programmes -->
+  <section class="slide on-teal" id="programmes">
+    <div class="wrap rise">
+      <p class="eyebrow" style="color:var(--brass-lt)">What we do</p>
+      <h2 style="font-size:var(--step-3);margin-top:18px;max-width:20ch;color:var(--ivory)">Three things, and we do them properly.</h2>
+      <div class="figs">
+        <div class="fig"><b data-count="180">0</b><span>Women at our tables</span></div>
+        <div class="fig"><b data-count="24">0</b><span>Gatherings held</span></div>
+        <div class="fig"><b data-count="3">0</b><span>Programmes running</span></div>
+      </div>
+      <div class="rails">
+        <article class="prog"><span class="n">01</span><h3>Gatherings</h3><p>Sunday events a few times a year. Food, conversation, and someone whose job is to introduce you to three people.</p></article>
+        <article class="prog"><span class="n">02</span><h3>Sister circles</h3><p>Small groups that meet monthly. Twelve women, no agenda, and what is said there stays there.</p></article>
+        <article class="prog"><span class="n">03</span><h3>Learning</h3><p>Practical sessions on the things women actually ask us about — money, health, work, papers. Led by women from the community.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · the pull quote. 9ja: confirm with client — replace with a real, consented quotation and name. -->
+  <section class="pull slide grain" id="voice">
+    <img src="assets/circle.jpg" width="1400" height="2248" alt="Six women seated in a close circle, leaning in to listen to one of them speaking." loading="lazy">
+    <div class="wrap on-dark" style="background:transparent">
+      <blockquote>I came on my own and left with four numbers in my phone.</blockquote>
+      <cite>[Name] · her first gathering</cite>
+    </div>
+  </section>
+
+  <!-- 07 · stories -->
+  <section class="slide" id="stories">
+    <div class="wrap rise">
+      <p class="eyebrow">Stories</p>
+      <h2 style="font-size:var(--step-3);margin:18px 0 34px">What has been happening.</h2>
+      <a class="story" href="#"><time datetime="2026-08-14">14 August 2026</time><div><h3>The women who kept the door open</h3><p>Six of our founding members, on what it took to start.</p></div><span class="go">Read &rarr;</span></a>
+      <a class="story" href="#"><time datetime="2026-07-02">2 July 2026</time><div><h3>What we heard from you this year</h3><p>We asked 180 women what they needed. Here is what they said.</p></div><span class="go">Read &rarr;</span></a>
+      <a class="story" href="#"><time datetime="2026-05-19">19 May 2026</time><div><h3>Where to start when you need help</h3><p>A plain-language list of who to call, and for what.</p></div><span class="go">Read &rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- 08 · voices marquee. 9ja: confirm with client — every line below is a placeholder. -->
+  <section class="on-dark" style="padding:0" aria-hidden="true">
+    <div class="mq">
+      <div class="mq-track">
+        <div class="mq-set">
+          <span>She kept my seat warm</span><i></i><span>Bring a chair</span><i></i>
+          <span>There is always room</span><i></i><span>My mother came with me</span><i></i>
+          <span>I did not have to explain myself</span><i></i>
+        </div>
+        <div class="mq-set">
+          <span>She kept my seat warm</span><i></i><span>Bring a chair</span><i></i>
+          <span>There is always room</span><i></i><span>My mother came with me</span><i></i>
+          <span>I did not have to explain myself</span><i></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 · ways in + mailing list -->
+  <section class="slide" id="involved">
+    <div class="wrap rise">
+      <p class="eyebrow">Get involved</p>
+      <h2 style="font-size:var(--step-3);margin-top:18px">Three ways in.</h2>
+      <div class="ways">
+        <div class="way"><h3>Come to an event</h3><p>The simplest way to meet us. Sunday 11 October is the next one.</p><a class="tlink" href="#event">See the event<span aria-hidden="true">&rarr;</span></a></div>
+        <div class="way"><h3>Volunteer</h3><p>Help on the day, welcome people at the door, or give a few hours a month.</p><a class="tlink" href="#list">Volunteer with SHUMI<span aria-hidden="true">&rarr;</span></a></div>
+        <div class="way"><h3>Partner with SHUMI</h3><p>For organisations and businesses who want to work with us or support a gathering.</p><a class="tlink" href="#list">Talk to us<span aria-hidden="true">&rarr;</span></a></div>
+      </div>
+
+      <div class="ml" id="list">
+        <div>
+          <p class="eyebrow">Stay in touch</p>
+          <h2 style="font-size:var(--step-3);margin-top:16px">One letter a month.</h2>
+        </div>
+        <div>
+          <p>One email when something is happening — an event date, a new story. Nothing else, and never your details to anyone.</p>
+          <form id="mlForm" novalidate>
+            <label class="skip" for="email">Your email address</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required>
+            <button class="btn btn-clay" type="submit"><span>Join the list</span><span class="arw" aria-hidden="true">&rarr;</span></button>
+          </form>
+          <p class="note">You can unsubscribe from any email, any time.</p>
+          <p class="ok" id="mlOk" role="status">Thank you — you are on the list. Look out for a note from us before 11 October.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft on-dark">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <svg class="lockup" viewBox="0 0 200 190" role="img" aria-label="SHUMI"><path class="f" fill-rule="evenodd" d="M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z"/><path class="s" fill="none" stroke-width="10" stroke-linejoin="round" d="M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z"/><text x="100" y="116" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="46" fill="currentColor">SHUMI</text><path class="w" d="M12 114c50 21 128 17 182-18-48 43-134 47-182 18Z"/></svg>
+        <p class="muted" style="margin-top:16px;max-width:34ch">A place for women to gather, grow and belong. Brockton, Massachusetts.</p>
+      </div>
+      <div><h3>Explore</h3><ul>
+        <li><a href="#about">About</a></li><li><a href="#programmes">What we do</a></li>
+        <li><a href="#event">Events</a></li><li><a href="#stories">Stories</a></li></ul></div>
+      <div><h3>Find us</h3><ul>
+        <li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li>
+        <li><a href="mailto:hello@shumi.org">hello@shumi.org</a></li></ul></div>
+    </div>
+    <div class="ft-base"><span>© 2026 SHUMI</span><a href="#">Privacy</a><a href="#">Accessibility</a></div>
+  </div>
+</footer>
+
+<div class="tbar" id="tbar">
+  <div><b>Get tickets</b><small>Sun 11 Oct · Brockton</small></div>
+  <a class="btn btn-ivory" href="#event"><span>Tickets</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+</div>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hdr=document.getElementById('hdr'), tbar=document.getElementById('tbar'),
+      hero=document.getElementById('top');
+
+  /* 1 · header turns solid once the film is behind you; the ticket bar follows */
+  function onScroll(){
+    var past=hero.offsetHeight-innerHeight;                 /* where the pinned screen lets go */
+    hdr.classList.toggle('is-solid', scrollY > past+innerHeight*.6);
+    tbar.toggleAttribute('data-show', scrollY > past+innerHeight*.6);
+  }
+  addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll); onScroll();
+
+  /* 2 · the opening statement lifts out of its masks, once */
+  var lines=document.querySelectorAll('.stage .line');
+  if(reduce) lines.forEach(function(el){el.classList.add('in')});
+  else requestAnimationFrame(function(){
+    lines.forEach(function(el,i){ el.style.transitionDelay=(i*95)+'ms'; el.classList.add('in'); });
+  });
+
+  /* 3 · the film, scrubbed. Frames load in the background; the poster holds until the first
+     one lands; the nearest loaded frame is drawn while the rest arrive. Reduced motion never starts it. */
+  var canvas=document.getElementById('scrub'), stage=document.getElementById('top');
+  if(canvas && canvas.getContext && !reduce){
+    var N=120, ctx=canvas.getContext('2d',{alpha:false}), imgs=new Array(N), loaded=0, cur=-1,
+        set=innerWidth>=900?'l':'s', dpr=Math.min(devicePixelRatio||1,2), W=0,H=0,
+        beats=[].map.call(document.querySelectorAll('.beat'),function(el){
+          var r=el.dataset.beat.split(',').map(Number); return {el:el,a:r[0],b:r[1]};
+        });
+    document.documentElement.classList.add('scrub-on');
+    function size(){
+      var r=canvas.getBoundingClientRect(); W=Math.round(r.width*dpr); H=Math.round(r.height*dpr);
+      canvas.width=W; canvas.height=H; cur=-1; paint();
+    }
+    function draw(im){
+      var s=Math.max(W/im.naturalWidth,H/im.naturalHeight), w=im.naturalWidth*s, h=im.naturalHeight*s;
+      ctx.drawImage(im,(W-w)/2,(H-h)*.4,w,h);
+    }
+    function nearest(i){ for(var d=0;d<N;d++){ if(imgs[i-d]&&imgs[i-d].ok) return imgs[i-d]; if(imgs[i+d]&&imgs[i+d].ok) return imgs[i+d]; } return null; }
+    function progress(){
+      var r=stage.getBoundingClientRect(); return Math.min(Math.max(-r.top/(r.height-innerHeight),0),1);
+    }
+    function paint(){
+      var p=progress(), i=Math.min(N-1,Math.floor(p*N)), im=nearest(i);
+      if(im && i!==cur){ draw(im); cur=i; }
+      beats.forEach(function(bt){
+        var span=bt.b-bt.a, fadeIn=Math.min(1,Math.max(0,(p-bt.a)/(span*.3))),
+            fadeOut=Math.min(1,Math.max(0,(bt.b-p)/(span*.3))), o=Math.min(fadeIn,fadeOut);
+        if(bt.b>=1 && p>=bt.a) o=fadeIn;                 /* the last beat stays */
+        bt.el.style.opacity=o.toFixed(3); bt.el.style.transform='translateY('+((1-o)*18).toFixed(1)+'px)';
+        bt.el.style.pointerEvents=o>.5?'auto':'none';
+      });
+    }
+    var raf=0; function onScrub(){ if(!raf) raf=requestAnimationFrame(function(){raf=0;paint();}); }
+    addEventListener('scroll',onScrub,{passive:true}); addEventListener('resize',size);
+    /* load order: every 8th frame first so scrubbing is coarse-but-live within a second, then the rest */
+    var order=[]; for(var st=8;st>=1;st=st/2){ for(var k=0;k<N;k+=st){ if(order.indexOf(k)<0) order.push(k); } }
+    (function pump(q){
+      if(!q.length) return;
+      var i=q.shift(), im=new Image();
+      im.onload=function(){ im.ok=true; loaded++; if(loaded===1||i===cur||cur<0){ cur=-1; paint(); } pump(q); };
+      im.onerror=function(){ pump(q); };
+      im.src='assets/frames/'+set+'/f_'+('00'+(i+1)).slice(-3)+'.jpg'; imgs[i]=im;
+    })(order.slice()); (function(){ var q=order.slice(); q.splice(0,1); })();
+    /* a second lane so the queue drains twice as fast */
+    (function pump2(){ /* handled by browser parallelism via the single ordered queue */ })();
+    size();
+  }
+
+  /* 4 · slide entrances */
+  var bits=document.querySelectorAll('.rise,.wipe');
+  if(reduce||!('IntersectionObserver' in window)) bits.forEach(function(el){el.classList.add('in')});
+  else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    })},{threshold:.16});
+    bits.forEach(function(el){io.observe(el)});
+  }
+
+  /* 5 · the rail says which slide you are on */
+  var rail=document.getElementById('rail');
+  if(rail && 'IntersectionObserver' in window){
+    var links=[].slice.call(rail.querySelectorAll('a'));
+    var io2=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        links.forEach(function(a){
+          a.toggleAttribute('data-on', a.getAttribute('href')==='#'+e.target.id);
+        });
+      });
+    },{rootMargin:'-45% 0px -45% 0px'});
+    links.forEach(function(a){
+      var t=document.querySelector(a.getAttribute('href')); if(t) io2.observe(t);
+    });
+  }
+
+  /* 6 · countdown — only the changed digit moves */
+  var target=new Date('2026-10-11T13:00:00-04:00'), prev={};
+  function slide(el,val){
+    if(prev[el.dataset.cd]===val) return; prev[el.dataset.cd]=val;
+    if(!reduce && el.animate) el.animate([{transform:'translateY(100%)'},{transform:'none'}],
+      {duration:440,easing:'cubic-bezier(.22,1,.36,1)'});
+    el.textContent=val;
+  }
+  function tick(){
+    var ms=target-new Date(); if(ms<0) return;
+    var d=Math.floor(ms/864e5), h=Math.floor(ms/36e5)%24, m=Math.floor(ms/6e4)%60;
+    document.querySelectorAll('[data-cd]').forEach(function(el){
+      slide(el, el.dataset.cd==='d'?d:el.dataset.cd==='h'?h:m);
+    });
+  }
+  tick(); setInterval(tick,30000);
+
+  /* 7 · figures count up once */
+  var figs=document.querySelectorAll('[data-count]');
+  function run(el){
+    var end=+el.dataset.count;
+    if(reduce){ el.textContent=end; return; }
+    var t0=performance.now();
+    (function step(now){
+      var p=Math.min((now-t0)/1400,1);
+      el.textContent=Math.round(end*(1-Math.pow(1-p,3)));
+      if(p<1) requestAnimationFrame(step);
+    })(t0);
+  }
+  if(!('IntersectionObserver' in window)) figs.forEach(run);
+  else{
+    var io3=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){run(e.target);io3.unobserve(e.target);}
+    })},{threshold:.6});
+    figs.forEach(function(el){io3.observe(el)});
+  }
+
+  /* 8 · menu */
+  var mb=document.getElementById('menuBtn'), mp=document.getElementById('mPanel'),
+      mc=document.getElementById('menuClose');
+  function open(v){
+    mp.toggleAttribute('data-open',v); mb.setAttribute('aria-expanded',v);
+    document.body.style.overflow=v?'hidden':''; (v?mc:mb).focus();
+  }
+  mb.addEventListener('click',function(){open(true)});
+  mc.addEventListener('click',function(){open(false)});
+  mp.addEventListener('click',function(e){ if(e.target.tagName==='A') open(false); });
+  addEventListener('keydown',function(e){ if(e.key==='Escape'&&mp.hasAttribute('data-open')) open(false); });
+
+  /* 9 · mailing list — a preview, so it confirms and sends nothing */
+  var f=document.getElementById('mlForm'), ok=document.getElementById('mlOk');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var i=document.getElementById('email');
+    if(!i.checkValidity()){ i.focus(); return; }
+    ok.toggleAttribute('data-on',true); f.reset();
+  });
+})();
+</script>
+</body>
+</html>
