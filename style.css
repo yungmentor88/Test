@@ -9,15 +9,15 @@
   --magenta-soft:#ff7aa8;
   --magenta-deep:#a10f45;
   --line:rgba(246,239,242,.12);
-  --display:'Syne',sans-serif;
-  --sans:'Manrope',sans-serif;
-  --serif:'Cormorant Garamond',serif;
+  --display:'Unbounded',sans-serif;
+  --sans:'Familjen Grotesk',sans-serif;
+  --serif:'Bodoni Moda',serif;
   --maxw:1240px;
   --ease:cubic-bezier(.22,.8,.24,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
 img{max-width:100%;display:block}
 a{color:inherit}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
@@ -148,7 +148,7 @@ section{padding:120px 0}
 /* Quotes */
 .quote-sec{position:relative;text-align:left}
 .quote-mark{font-family:var(--serif);font-size:200px;line-height:0;color:var(--magenta);opacity:.5;display:block;margin-bottom:30px}
-.quote-sec blockquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(30px,4.4vw,54px);line-height:1.25;max-width:24ch;text-transform:none;letter-spacing:0;font-family:var(--serif)}
+.quote-sec blockquote{font-family:var(--serif);font-style:normal;font-weight:500;font-size:clamp(30px,4.4vw,54px);line-height:1.25;max-width:24ch;text-transform:none;letter-spacing:0;font-family:var(--serif)}
 .quote-sec cite{display:block;margin-top:26px;font-style:normal;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--magenta-soft)}
 .quote-nav{display:flex;gap:12px;margin-top:40px}
 .quote-nav button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;font-size:18px;color:var(--ink);transition:background .3s,border-color .3s}
@@ -268,3 +268,8 @@ footer ul a:hover{color:var(--ink)}
 .switcher a:not(.on):hover{color:var(--ink)}
 
 :focus-visible{outline:2px solid var(--magenta);outline-offset:3px}
+
+/* Hallmark gate 34 — the clip must sit on html AND body, and be clip, not hidden:
+   the decorative oversized numerals and the marquee are meant to run past the edge,
+   but the document itself must never scroll sideways at 320px. */
+html,body{overflow-x:clip}
