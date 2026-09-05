@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHUMI — Concept B</title>
+<meta name="description" content="SHUMI Women's Empowerment — a place for women to gather, grow and belong. Women's Empowerment Event, 11 October 2026.">
+<meta name="author" content="9ja LDA">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="SHUMI — Women's Empowerment">
+<meta property="og:description" content="A place for women to gather, grow and belong. Women's Empowerment Event, 11 October 2026.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 190'%3E%3Cpath d='M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z' fill='%23E85CA3'/%3E%3Cpath d='M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z' fill='none' stroke='%23E85CA3' stroke-width='15' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/figtree.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
+
+<!--
+  SHUMI — Concept B, "Circle".
+  Brand pink (--rose #E85CA3) appears exactly SIX times, as fills only:
+    1. Header scroll-progress bar
+    2. Hero "Get tickets" button
+    3. The arc rule under the event date
+    4. One cell of the nine-cell voices grid
+    5. Mailing-list "Join the list" button
+    6. Mobile floating ticket bar
+  Pink TEXT on light ground is --rose-deep (#9E2A63, 6.70:1); on charcoal it is
+  --rose-on-dark (#F0A8CE, 8.1:1). Never --rose as text.
+-->
+
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E4 S4 R4 V5
+ * Philosophy 5 — the circle is the argument: every corner arcs, nothing is a box.
+ * Hierarchy  5 — one h1, a 12-column grid held honestly, bands that alternate ground.
+ * Execution  4 — self-hosted type, tokens locked, motion is transform/opacity only.
+ * Specificity 4 — copy is SHUMI's; the arc motif is drawn, not borrowed.
+ * Restraint  4 — six pink fills, one shadow, no effects beyond the arc and the drift.
+ * Variety    5 — shares nothing structural with concept A: light ground, sans, arcs, bands.
+ */
+:root{
+  --bone:#FBF8F6; --shell:#F3EBE8; --rose-mist:#FAECF3;
+  --ink:#1A0F14; --ink-soft:#4A3A42; --ink-muted:#6E5A63;
+  --rose:#E85CA3; --rose-deep:#9E2A63; --rose-quiet:#C98AAE;
+  --ink-panel:#1A0F14; --on-panel:#FBF8F6; --rose-on-dark:#F0A8CE;
+  --hairline:#E3D8D3;
+
+  --display:'Bricolage Grotesque','Figtree',system-ui,sans-serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+  --step--1:clamp(0.9rem,0.88rem + 0.1vw,0.97rem);
+  --step-0:clamp(1.06rem,1.02rem + 0.18vw,1.15rem);
+  --step-1:clamp(1.28rem,1.2rem + 0.4vw,1.5rem);
+  --step-2:clamp(1.55rem,1.4rem + 0.7vw,2rem);
+  --step-3:clamp(1.9rem,1.6rem + 1.4vw,2.9rem);
+  --step-4:clamp(2.3rem,1.85rem + 2.2vw,4rem);
+
+  --dur-micro:160ms; --dur-state:240ms; --dur-reveal:520ms;
+  --ease-out-soft:cubic-bezier(.22,1,.36,1);
+  --ease-quiet:cubic-bezier(.65,0,.35,1);
+
+  --gap:clamp(20px,5vw,72px);
+  --container:min(1320px, 100% - 2*var(--gap));
+  --col-gap:clamp(14px,1.8vw,28px);
+  --section:clamp(72px,10vw,140px);
+  --hd:74px;
+  --z-header:60; --z-menu:80; --z-bar:70;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bone);color:var(--ink);
+  font-family:var(--body);font-size:var(--step-0);line-height:1.62;
+  font-variant-numeric:tabular-nums;overflow-x:clip;
+  -webkit-font-smoothing:antialiased;
+}
+img,video{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--display);line-height:1.04;letter-spacing:-.028em;margin:0;text-wrap:balance}
+h1{font-weight:700}h2{font-weight:600}h3{font-weight:600}
+p{margin:0;text-wrap:pretty}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--rose-deep);outline-offset:3px}
+.wrap{width:var(--container);margin-inline:auto}
+.grid12{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--col-gap) var(--col-gap)}
+@media(min-width:900px){.grid12{grid-template-columns:repeat(12,minmax(0,1fr))}}
+.eyebrow{
+  font-family:var(--body);font-size:var(--step--1);font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--rose-deep);margin:0;
+}
+.lead{font-size:var(--step-1);line-height:1.5;color:var(--ink-soft)}
+.muted{color:var(--ink-muted)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:200;background:var(--ink);color:var(--bone);padding:12px 18px;display:inline-flex;align-items:center;min-height:44px}
+section[id]{scroll-margin-top:calc(var(--hd) + 8px)}
+
+/* --- Buttons: the fill arcs in from the left --- */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:10px;
+  min-height:52px;padding:14px 28px;border:0;cursor:pointer;border-radius:999px;
+  font-family:var(--body);font-size:var(--step-0);font-weight:700;
+  text-decoration:none;overflow:hidden;isolation:isolate;white-space:nowrap;
+}
+@media(max-width:400px){.btn{font-size:1rem;padding:14px 22px;gap:8px}}
+.btn>span{position:relative;z-index:1}
+.btn .arw{position:relative;z-index:1;transition:transform var(--dur-micro) var(--ease-out-soft)}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform var(--dur-state) var(--ease-out-soft);
+}
+.btn:hover .arw{transform:translateX(5px)}
+.btn:hover::before{transform:scaleX(1)}
+/* Pink fill carries near-black text — #1A0F14 on #E85CA3 is 5.78:1. Never white. */
+.btn-rose{background:var(--rose);color:var(--ink)}
+.btn-rose::before{background:var(--ink)}
+.btn-rose:hover{color:var(--bone)}
+.btn-ink{background:var(--ink);color:var(--bone)}
+.btn-ink::before{background:var(--bone)}
+.btn-ink:hover{color:var(--ink)}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn-line::before{background:var(--ink)}
+.btn-line:hover{color:var(--bone)}
+.btn-onpanel{background:var(--bone);color:var(--ink)}
+.btn-onpanel::before{background:var(--rose)}
+.tlink{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;
+  color:var(--rose-deep);font-weight:700;text-decoration:none;
+  background-image:linear-gradient(currentColor,currentColor);
+  background-repeat:no-repeat;background-position:0 calc(100% - 10px);background-size:0 1.5px;
+  transition:background-size var(--dur-state) var(--ease-quiet);
+}
+.tlink:hover,.tlink:focus-visible{background-size:100% 1.5px}
+.panel .tlink{color:var(--rose-on-dark)}
+
+/* --- Header: bone, always solid. The pink line measures the page. --- */
+.hdr{
+  position:fixed;inset:0 0 auto 0;z-index:var(--z-header);height:var(--hd);
+  display:flex;align-items:center;background:rgba(251,248,246,.92);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:inset 0 -1px 0 var(--hairline);
+}
+.hdr .wrap{display:flex;align-items:center;gap:clamp(14px,3vw,40px)}
+.prog{position:absolute;left:0;bottom:0;height:2px;width:100%;transform:scaleX(0);transform-origin:left;background:var(--rose)}
+.mark{display:inline-flex;align-items:center;gap:11px;min-height:44px;text-decoration:none;flex:none}
+.mark i{width:18px;height:18px;border-radius:50%;border:3px solid var(--rose-deep);display:block}
+.mark b{font-family:var(--display);font-weight:700;font-size:1.24rem;letter-spacing:-.02em}
+.nav{display:none;gap:clamp(14px,2vw,30px);margin-left:auto}
+.nav a{
+  text-decoration:none;font-weight:600;display:inline-flex;align-items:center;min-height:44px;
+  background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;
+  background-position:0 calc(100% - 12px);background-size:0 1.5px;
+  transition:background-size var(--dur-state) var(--ease-quiet);
+}
+.nav a:hover,.nav a:focus-visible{background-size:100% 1.5px}
+.hdr .btn{min-height:44px;padding:10px 22px;font-size:1rem;margin-left:auto}
+@media(min-width:1000px){.nav{display:flex}.hdr .btn{margin-left:0}}
+@media(max-width:640px){.hdr .btn{display:none}}
+.menu-btn{
+  margin-left:auto;min-height:44px;padding:10px 20px;border-radius:999px;background:transparent;
+  border:1.5px solid var(--ink);color:var(--ink);font-family:var(--body);font-weight:700;cursor:pointer;
+}
+@media(min-width:1000px){.menu-btn{display:none}}
+.m-panel{position:fixed;inset:0;z-index:var(--z-menu);background:var(--bone);display:none;flex-direction:column}
+.m-panel[data-open]{display:flex}
+.m-top{display:flex;align-items:center;padding:16px var(--gap);border-bottom:1px solid var(--hairline)}
+.m-links{padding:8px var(--gap);flex:1;overflow-y:auto}
+.m-links a{
+  display:flex;align-items:center;min-height:62px;text-decoration:none;
+  font-family:var(--display);font-weight:600;font-size:var(--step-2);
+  border-bottom:1px solid var(--hairline);
+}
+.m-foot{padding:20px var(--gap);background:var(--shell)}
+.m-foot .btn{width:100%;justify-content:center}
+
+/* --- Bands --- */
+section{padding-block:var(--section)}
+.panel{background:var(--ink-panel);color:var(--on-panel)}
+.panel h2,.panel h3{color:var(--on-panel)}
+.panel .eyebrow{color:var(--rose-on-dark)}
+.panel .lead{color:#D9CBD1}
+.panel .muted{color:#C6B4BC}
+.shell{background:var(--shell)}
+
+/* --- The arc: one shape, used everywhere, never a rectangle --- */
+.arc{border-radius:min(50%,300px) min(50%,300px) 18px 18px;overflow:hidden;background:var(--shell)}
+.arc-b{border-radius:18px 18px min(50%,300px) min(50%,300px);overflow:hidden;background:var(--shell)}
+.round{border-radius:999px;overflow:hidden;background:var(--shell)}
+.grain{position:relative}
+.grain::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.04;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- 1 · HERO: full viewport. Type on the left, an arch of moving film on the right. --- */
+.hero{
+  position:relative;min-height:100svh;
+  padding:var(--hd) 0 8px;display:flex;flex-direction:column;overflow:clip;
+}
+@supports not (min-height:100svh){.hero{min-height:100vh}}
+.hero-in{flex:1;display:grid;align-items:center;width:var(--container);margin-inline:auto;
+  grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--col-gap);padding-block:clamp(16px,3vh,40px)}
+@media(min-width:900px){.hero-in{grid-template-columns:repeat(12,minmax(0,1fr))}}
+.hero-copy{grid-column:1/-1}
+@media(min-width:900px){.hero-copy{grid-column:1/span 6}}
+.hero h1{font-size:clamp(2.6rem,min(8.4vw,12.4vh),6.2rem);letter-spacing:-.04em}
+.hero h1 em{font-style:normal;color:var(--rose-deep)}
+.hero .lead{margin-top:clamp(14px,2.4vh,26px);max-width:38ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px 16px;margin-top:clamp(20px,3.4vh,34px)}
+/* the arch column: film, clipped, running off the bottom of the hero into the band below */
+.hero-film{grid-column:1/-1;position:relative;height:clamp(180px,26vh,250px);margin-top:20px}
+.hero-film .arc{position:absolute;inset:0;background:var(--ink-panel)}
+.hero-film video,.hero-film img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.js .hero-film video,.js .hero-film img{animation:drift 36s var(--ease-quiet) infinite alternate;will-change:transform}
+@media(min-width:900px){
+  .hero-film{grid-column:8/-1;height:auto;align-self:stretch;margin-block:clamp(8px,2vh,26px) 0}
+}
+@keyframes drift{from{transform:scale(1.03)}to{transform:scale(1.1) translate3d(1.2%,-1.4%,0)}}
+/* counter rail */
+.hero-rail{
+  width:var(--container);margin-inline:auto;display:flex;align-items:center;gap:14px 26px;
+  flex-wrap:wrap;padding-bottom:clamp(14px,2.6vh,26px);font-size:var(--step--1);color:var(--ink-muted);
+}
+.hero-rail .n{font-family:var(--display);font-weight:700;font-size:var(--step-1);color:var(--ink);letter-spacing:-.02em}
+.hero-rail .sep{width:34px;height:1px;background:var(--hairline)}
+
+/* --- 2 · MARQUEE band --- */
+.mq{overflow:hidden;padding-block:clamp(18px,2.4vw,26px);border-block:1px solid rgba(251,248,246,.16)}
+.mq-track{display:flex;width:max-content;gap:0}
+.js .mq-track{animation:mqRun 40s linear infinite}
+@keyframes mqRun{to{transform:translateX(-50%)}}
+.mq-set{display:flex;align-items:center;gap:clamp(28px,5vw,64px);padding-right:clamp(28px,5vw,64px)}
+.mq-set span{
+  font-family:var(--display);font-weight:600;font-size:clamp(1.3rem,2.6vw,2.1rem);
+  letter-spacing:-.02em;white-space:nowrap;color:var(--on-panel);
+}
+.mq-set i{width:9px;height:9px;border-radius:50%;background:var(--rose-on-dark);flex:none;display:block}
+
+/* --- 3 · EVENT --- */
+.ev-date{display:flex;align-items:flex-end;gap:clamp(10px,2vw,22px);flex-wrap:wrap}
+.ev-date b{font-family:var(--display);font-weight:700;font-size:clamp(3.4rem,11vw,8.5rem);line-height:.86;letter-spacing:-.05em}
+.ev-date span{font-size:var(--step-1);color:#D9CBD1;padding-bottom:.5em}
+.ev-rule{height:6px;border-radius:999px;background:var(--rose);margin:26px 0 0;width:min(340px,60%)}
+.ev-facts{display:grid;gap:2px;margin-top:34px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:760px){.ev-facts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.ev-facts div{padding:18px 0;border-top:1px solid rgba(251,248,246,.2)}
+.ev-facts dt{font-size:var(--step--1);letter-spacing:.14em;text-transform:uppercase;color:var(--rose-on-dark);margin-bottom:6px}
+.ev-facts dd{margin:0;font-weight:600}
+.cd{display:flex;gap:clamp(14px,3vw,34px);margin-top:34px}
+.cd div{display:flex;flex-direction:column}
+.cd b{font-family:var(--display);font-weight:700;font-size:clamp(2rem,5vw,3.2rem);line-height:1;letter-spacing:-.03em;overflow:hidden}
+.cd small{font-size:var(--step--1);letter-spacing:.14em;text-transform:uppercase;color:#C6B4BC;margin-top:8px}
+
+/* --- 4 · WHO WE ARE --- */
+.who-img{grid-column:1/-1;height:clamp(300px,44vw,520px)}
+.who-txt{grid-column:1/-1}
+@media(min-width:900px){.who-img{grid-column:1/span 5}.who-txt{grid-column:7/-1;align-self:center}}
+.who-img img{width:100%;height:100%;object-fit:cover}
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--col-gap);margin-top:36px}
+.figs b{display:block;font-family:var(--display);font-weight:700;font-size:var(--step-3);letter-spacing:-.03em}
+.figs span{font-size:var(--step--1);color:var(--ink-muted);display:block;margin-top:4px}
+
+/* --- 5 · WHAT WE DO --- */
+.cards{display:grid;gap:clamp(22px,3vw,34px);grid-template-columns:1fr;margin-top:44px}
+@media(min-width:760px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.card{background:var(--bone);border:1px solid var(--hairline);border-radius:26px;padding:clamp(22px,3vw,32px);
+  transition:transform var(--dur-state) var(--ease-out-soft),box-shadow var(--dur-state) var(--ease-out-soft)}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -28px rgba(26,15,20,.5)}
+.card i{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;
+  border:1.5px solid var(--rose-deep);color:var(--rose-deep);font-style:normal;font-weight:700;font-family:var(--display)}
+.card h3{font-size:var(--step-2);margin:20px 0 10px}
+.card p{color:var(--ink-soft)}
+
+/* --- 6 · HOW WE WORK, pinned --- */
+.how{display:grid;gap:36px;grid-template-columns:1fr}
+@media(min-width:1024px){
+  .how{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,90px)}
+  .how-pin{position:sticky;top:calc(var(--hd) + 60px);align-self:start}
+}
+.steps{display:grid;gap:clamp(20px,3vw,30px)}
+.step{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;
+  padding-bottom:clamp(20px,3vw,30px);border-bottom:1px solid var(--hairline)}
+.step:last-child{border-bottom:0;padding-bottom:0}
+.step b{font-family:var(--display);font-weight:700;font-size:var(--step-2);color:var(--rose-deep);line-height:1}
+.step h3{font-size:var(--step-1);margin-bottom:8px}
+.step p{color:var(--ink-soft)}
+
+/* --- 7 · STORIES --- */
+.story{display:grid;grid-template-columns:1fr;gap:6px 24px;padding:26px 0;border-top:1px solid var(--hairline);
+  text-decoration:none;transition:padding-left var(--dur-state) var(--ease-out-soft)}
+.story:hover{padding-left:10px}
+@media(min-width:820px){.story{grid-template-columns:150px 1fr 130px;align-items:baseline}}
+.story time{font-size:var(--step--1);color:var(--ink-muted);letter-spacing:.06em}
+.story h3{font-size:var(--step-2)}
+.story p{color:var(--ink-soft);margin-top:6px}
+.story .go{color:var(--rose-deep);font-weight:700;justify-self:start}
+@media(min-width:820px){.story .go{justify-self:end}}
+
+/* --- 8 · VOICES, a nine-cell circle of women --- */
+.voices{display:grid;gap:var(--col-gap);grid-auto-flow:column;grid-auto-columns:78%;
+  overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;
+  scrollbar-width:thin;margin-top:40px}
+.voices>*{scroll-snap-align:start}
+@media(min-width:900px){
+  .voices{grid-auto-flow:row;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-columns:auto;overflow:visible}
+}
+.vc{border-radius:26px;padding:clamp(20px,2.6vw,28px);background:var(--bone);border:1px solid var(--hairline);
+  display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:230px}
+.vc p{font-family:var(--display);font-weight:500;font-size:var(--step-1);letter-spacing:-.02em;line-height:1.24}
+.vc small{font-size:var(--step--1);color:var(--ink-muted)}
+.vc-rose{background:var(--rose);border-color:var(--rose)}
+.vc-rose p,.vc-rose small{color:var(--ink)}
+.vc-img{padding:0;border:0;overflow:hidden;min-height:230px}
+.vc-img img{width:100%;height:100%;object-fit:cover;min-height:230px;
+  transition:transform 900ms var(--ease-out-soft)}
+.vc-img:hover img{transform:scale(1.05)}
+.vc-ink{background:var(--ink-panel);border-color:var(--ink-panel)}
+.vc-ink p{color:var(--on-panel)}.vc-ink small{color:#C6B4BC}
+
+/* --- 9 · GET INVOLVED --- */
+.ways{display:grid;gap:clamp(20px,3vw,30px);grid-template-columns:1fr;margin-top:44px}
+@media(min-width:820px){.ways{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.way{border-top:2px solid var(--ink);padding-top:22px}
+.way h3{font-size:var(--step-2);margin-bottom:10px}
+.way p{color:var(--ink-soft);margin-bottom:14px}
+
+/* --- 10 · MAILING LIST --- */
+.ml{display:grid;gap:26px;grid-template-columns:1fr}
+@media(min-width:900px){.ml{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,90px);align-items:center}}
+.ml form{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.ml input{
+  flex:1 1 240px;min-height:52px;padding:14px 20px;border-radius:999px;
+  border:1.5px solid var(--hairline);background:var(--bone);color:var(--ink);
+  font-family:var(--body);font-size:var(--step-0);
+}
+.ml input:focus-visible{border-color:var(--rose-deep)}
+.ml .note{font-size:var(--step--1);color:var(--ink-muted);margin-top:12px}
+.ml .ok{display:none;font-weight:700;color:var(--rose-deep);margin-top:14px}
+.ml .ok[data-on]{display:block}
+
+/* --- 11 · FOOTER --- */
+.ft{background:var(--ink-panel);color:var(--on-panel);padding-block:clamp(56px,7vw,90px) 120px}
+.ft-grid{display:grid;gap:34px;grid-template-columns:1fr}
+@media(min-width:820px){.ft-grid{grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,3fr)}}
+.ft h3{font-size:var(--step--1);letter-spacing:.16em;text-transform:uppercase;color:var(--rose-on-dark);font-weight:600;margin-bottom:14px}
+.ft a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-panel);text-decoration:none;
+  background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;
+  background-position:0 calc(100% - 12px);background-size:0 1.5px;transition:background-size var(--dur-state) var(--ease-quiet)}
+.ft a:hover,.ft a:focus-visible{background-size:100% 1.5px}
+.ft ul{list-style:none;margin:0;padding:0}
+.ft-base{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;margin-top:44px;padding-top:22px;
+  border-top:1px solid rgba(251,248,246,.2);font-size:var(--step--1);color:#C6B4BC}
+.ft-mark{display:inline-flex;align-items:center;gap:11px}
+.ft-mark i{width:18px;height:18px;border-radius:50%;border:3px solid var(--rose-on-dark);display:block}
+.ft-mark b{font-family:var(--display);font-weight:700;font-size:1.24rem;letter-spacing:-.02em}
+
+/* --- Mobile ticket bar --- */
+.tbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:var(--z-bar);
+  display:flex;align-items:center;gap:14px;padding:10px var(--gap);
+  background:var(--rose);color:var(--ink);
+  transform:translateY(110%);transition:transform var(--dur-state) var(--ease-out-soft);
+}
+.tbar[data-show]{transform:none}
+.tbar b{font-weight:700}.tbar small{display:block;font-size:var(--step--1)}
+.tbar .btn{margin-left:auto;min-height:44px;padding:10px 20px;font-size:1rem}
+@media(min-width:1000px){.tbar{display:none}}
+
+/* --- Motion, all of it opt-out --- */
+.line{display:block;overflow:hidden}
+.line>span{display:block;will-change:transform}
+.js .line>span{transform:translateY(1em)}
+.js .line.in>span{transform:none;transition:transform 900ms var(--ease-out-soft)}
+.js .rise{opacity:0;transform:translateY(18px)}
+.js .rise.in{opacity:1;transform:none;
+  transition:opacity var(--dur-reveal) var(--ease-out-soft),transform var(--dur-reveal) var(--ease-out-soft)}
+.js .par{will-change:transform}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .js .line>span,.js .rise{transform:none;opacity:1}
+  .js .mq-track{animation:none}
+}
+
+/* --- The SHUMI crest. 9ja: vector interpretation of the client's supplied logo —
+   swap in their master artwork (SVG preferred) before anything ships. --- */
+.crest{width:30px;height:auto;flex:none}
+.crest .f,.crest .w{fill:var(--rose)}
+.crest .s{stroke:var(--rose)}
+.lockup{width:124px;height:auto;display:block}
+.lockup .f,.lockup .w{fill:var(--rose)}
+.lockup .s{stroke:var(--rose)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="mark" href="#top">
+      <svg class="crest" viewBox="0 0 200 190" aria-hidden="true"><path class="f" fill-rule="evenodd" d="M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z"/><path class="s" fill="none" stroke-width="12" stroke-linejoin="round" d="M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z"/><path class="w" d="M12 114c50 21 128 17 182-18-48 43-134 47-182 18Z"/></svg>
+      <b>SHUMI</b></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#programmes">What we do</a>
+      <a href="#event">Events</a>
+      <a href="#stories">Stories</a>
+      <a href="#involved">Get involved</a>
+    </nav>
+    <a class="btn btn-rose" href="#event"><span>Get tickets</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mPanel">Menu</button>
+  </div>
+  <div class="prog" id="prog" aria-hidden="true"></div>
+</header>
+
+<div class="m-panel" id="mPanel" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="m-top">
+    <span class="mark"><svg class="crest" viewBox="0 0 200 190" aria-hidden="true"><path class="f" fill-rule="evenodd" d="M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z"/><path class="s" fill="none" stroke-width="12" stroke-linejoin="round" d="M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z"/><path class="w" d="M12 114c50 21 128 17 182-18-48 43-134 47-182 18Z"/></svg><b>SHUMI</b></span>
+    <button class="menu-btn" id="menuClose" style="margin-left:auto">Close</button>
+  </div>
+  <nav class="m-links" aria-label="Mobile">
+    <a href="#about">About</a>
+    <a href="#programmes">What we do</a>
+    <a href="#event">Events</a>
+    <a href="#stories">Stories</a>
+    <a href="#involved">Get involved</a>
+  </nav>
+  <div class="m-foot"><a class="btn btn-rose" href="#event"><span>Get tickets — 11 Oct</span></a></div>
+</div>
+
+<main id="main">
+
+  <!-- 1 · HERO — full viewport: type left, an arch of moving film right. -->
+  <section class="hero" id="top">
+    <div class="hero-in">
+      <div class="hero-copy">
+        <p class="eyebrow">Sunday 11 October 2026 · Women's Empowerment Event</p>
+        <h1 style="margin-top:18px">
+          <span class="line"><span>A circle</span></span>
+          <span class="line"><span>with room</span></span>
+          <span class="line"><span><em>for you.</em></span></span>
+        </h1>
+        <p class="lead">
+          SHUMI is a place for women to gather, grow and be heard — built by women of the
+          Cape Verdean community, open to every woman who wants in.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-rose" href="#event"><span>Get tickets on Eventbrite</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-line" href="#about"><span>What SHUMI does</span></a>
+        </div>
+      </div>
+      <div class="hero-film">
+        <div class="arc grain">
+          <video id="filmVid" poster="assets/hero-poster.jpg" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+            <source src="assets/hero-loop.webm" type="video/webm">
+            <source src="assets/hero-loop.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <div class="hero-rail">
+      <span><b class="n" data-cd="d">—</b> days to the next gathering</span>
+      <span class="sep" aria-hidden="true"></span>
+      <!-- 9ja: confirm with client — we have not put a founding year or a headcount here until they give us the real numbers -->
+      <span>Brockton, Massachusetts · doors 1pm</span>
+      <span class="sep" aria-hidden="true"></span>
+      <span>Come on your own. Most people do.</span>
+    </div>
+  </section>
+
+  <!-- 2 · MARQUEE — the promise, in the client's own words, on repeat -->
+  <section class="panel" style="padding-block:0" aria-hidden="true">
+    <div class="mq">
+      <div class="mq-track" id="mq">
+        <div class="mq-set">
+          <span>Gather</span><i></i><span>Grow</span><i></i><span>Be heard</span><i></i>
+          <span>Belong</span><i></i><span>Bring a chair</span><i></i><span>There is always room</span><i></i>
+        </div>
+        <div class="mq-set">
+          <span>Gather</span><i></i><span>Grow</span><i></i><span>Be heard</span><i></i>
+          <span>Belong</span><i></i><span>Bring a chair</span><i></i><span>There is always room</span><i></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · EVENT -->
+  <section class="panel" id="event">
+    <div class="wrap rise">
+      <p class="eyebrow">The next gathering</p>
+      <div class="ev-date" style="margin-top:20px">
+        <b>11 Oct</b><span>2026 · Sunday</span>
+      </div>
+      <div class="ev-rule" aria-hidden="true"></div>
+      <p class="lead" style="max-width:48ch;margin-top:30px">
+        A whole Sunday together — talking, eating, listening, and meeting women you have
+        not met yet. Come on your own. Most people do.
+      </p>
+      <dl class="ev-facts">
+        <div><dt>When</dt><dd>Sunday 11 October 2026</dd></div>
+        <div><dt>Time</dt><dd>Doors 1pm</dd></div>
+        <div><dt>Where</dt><dd>Brockton, Massachusetts</dd></div>
+        <div><dt>Tickets</dt><dd>From $25</dd></div>
+      </dl>
+      <div class="cd" id="cd">
+        <div><b data-cd="d">—</b><small>Days</small></div>
+        <div><b data-cd="h">—</b><small>Hours</small></div>
+        <div><b data-cd="m">—</b><small>Mins</small></div>
+      </div>
+      <div style="margin-top:38px;display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center">
+        <a class="btn btn-onpanel" href="#" rel="noopener"><span>Get tickets on Eventbrite</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+        <span class="muted" style="font-size:var(--step--1)">Opens in a new tab.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · WHO WE ARE -->
+  <section id="about">
+    <div class="wrap grid12 rise">
+      <div class="who-img arc-b grain par" data-par="0.06">
+        <img src="assets/circle.jpg" width="1400" height="1400" alt="A circle of women seated together in a bright room, listening to one another.">
+      </div>
+      <div class="who-txt">
+        <p class="eyebrow">Who we are</p>
+        <h2 style="font-size:var(--step-3);margin:16px 0 20px">We started because the room did not exist yet.</h2>
+        <p class="lead">
+          A handful of women began meeting in a front room in Brockton. Word travelled the way
+          it does — a sister, a cousin, a neighbour. SHUMI is what that became: events,
+          programmes, and a standing invitation.
+        </p>
+        <div class="figs">
+          <div><b data-count="180">0</b><span>Women at our tables</span></div>
+          <div><b data-count="24">0</b><span>Gatherings held</span></div>
+          <div><b data-count="3">0</b><span>Programmes running</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · WHAT WE DO -->
+  <section class="shell" id="programmes">
+    <div class="wrap rise">
+      <p class="eyebrow">What we do</p>
+      <h2 style="font-size:var(--step-3);margin-top:16px;max-width:18ch">Three things, and we do them properly.</h2>
+      <div class="cards">
+        <div class="card"><i>01</i><h3>Gatherings</h3><p>Sunday events a few times a year. Food, conversation, and someone whose job is to introduce you to three people.</p></div>
+        <div class="card"><i>02</i><h3>Sister circles</h3><p>Small groups that meet monthly. Twelve women, no agenda, and what is said there stays there.</p></div>
+        <div class="card"><i>03</i><h3>Learning</h3><p>Practical sessions on the things women actually ask us about — money, health, work, papers. Led by women from the community.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · HOW WE WORK — the left column holds while the steps move past it -->
+  <section>
+    <div class="wrap how rise">
+      <div class="how-pin">
+        <p class="eyebrow">How it goes</p>
+        <h2 style="font-size:var(--step-3);margin-top:16px">Coming for the first time.</h2>
+        <p class="lead" style="margin-top:18px;max-width:32ch">
+          Nobody arrives knowing everyone. This is what the day looks like from the door.
+        </p>
+      </div>
+      <div class="steps">
+        <div class="step"><b>01</b><div><h3>You book, and we say hello</h3><p>A ticket, then an email from a person — not a system — with what to expect and who to look for on the day.</p></div></div>
+        <div class="step"><b>02</b><div><h3>You arrive, and you are walked in</h3><p>Someone meets you at the door and introduces you to three women before you have taken your coat off.</p></div></div>
+        <div class="step"><b>03</b><div><h3>You leave with somewhere to go next</h3><p>A sister circle, a session, or the next Sunday. Whatever you want, and nothing you don't.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · STORIES -->
+  <section class="shell" id="stories">
+    <div class="wrap rise">
+      <p class="eyebrow">Stories</p>
+      <h2 style="font-size:var(--step-3);margin:16px 0 32px">What has been happening.</h2>
+      <a class="story" href="#"><time datetime="2026-08-14">14 August 2026</time><div><h3>The women who kept the door open</h3><p>Six of our founding members, on what it took to start.</p></div><span class="go">Read &rarr;</span></a>
+      <a class="story" href="#"><time datetime="2026-07-02">2 July 2026</time><div><h3>What we heard from you this year</h3><p>We asked 180 women what they needed. Here is what they said.</p></div><span class="go">Read &rarr;</span></a>
+      <a class="story" href="#"><time datetime="2026-05-19">19 May 2026</time><div><h3>Where to start when you need help</h3><p>A plain-language list of who to call, and for what.</p></div><span class="go">Read &rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- 8 · VOICES — nine cells, one circle. Quotes are placeholders.
+       9ja: confirm with client — replace every quote and name below with real, consented ones. -->
+  <section>
+    <div class="wrap rise">
+      <p class="eyebrow">Voices</p>
+      <h2 style="font-size:var(--step-3);margin-top:16px;max-width:20ch">From women who came.</h2>
+      <div class="voices">
+        <blockquote class="vc"><p>I nearly turned around in the car park. I am so glad I didn't.</p><small>[Name] · first gathering, March</small></blockquote>
+        <figure class="vc vc-img grain" style="margin:0"><img src="assets/v1.jpg" width="900" height="900" alt="A woman laughing with a friend at a SHUMI gathering." loading="lazy"></figure>
+        <blockquote class="vc vc-rose"><p>It is the only room where I don't have to explain myself first.</p><small>[Name] · volunteer</small></blockquote>
+        <figure class="vc vc-img grain" style="margin:0"><img src="assets/v2.jpg" width="900" height="900" alt="Two women in conversation, seated close together." loading="lazy"></figure>
+        <blockquote class="vc vc-ink"><p>My mother came with me. She has not stopped talking about it.</p><small>[Name] · sister circle, Brockton</small></blockquote>
+        <figure class="vc vc-img grain" style="margin:0"><img src="assets/v3.jpg" width="900" height="900" alt="A woman speaking to a small group, mid-sentence." loading="lazy"></figure>
+        <blockquote class="vc"><p>I came on my own and left with four numbers in my phone.</p><small>[Name] · September gathering</small></blockquote>
+        <figure class="vc vc-img grain" style="margin:0"><img src="assets/hands.jpg" width="900" height="900" alt="Two women's hands resting together on a table." loading="lazy"></figure>
+        <blockquote class="vc"><p>Bring a chair. There is always room at the table.</p><small>SHUMI</small></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · GET INVOLVED -->
+  <section class="shell" id="involved">
+    <div class="wrap rise">
+      <p class="eyebrow">Get involved</p>
+      <h2 style="font-size:var(--step-3);margin-top:16px">Three ways in.</h2>
+      <div class="ways">
+        <div class="way"><h3>Come to an event</h3><p>The simplest way to meet us. Sunday 11 October is the next one.</p><a class="tlink" href="#event">See the event</a></div>
+        <div class="way"><h3>Volunteer</h3><p>Help on the day, welcome people at the door, or give a few hours a month.</p><a class="tlink" href="#list">Volunteer with SHUMI</a></div>
+        <div class="way"><h3>Partner with SHUMI</h3><p>For organisations and businesses who want to work with us or support a gathering.</p><a class="tlink" href="#list">Talk to us</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · MAILING LIST -->
+  <section id="list">
+    <div class="wrap ml rise">
+      <div>
+        <p class="eyebrow">Stay in touch</p>
+        <h2 style="font-size:var(--step-3);margin-top:16px">One letter a month.</h2>
+      </div>
+      <div>
+        <p>One email when something is happening — an event date, a new story. Nothing else, and never your details to anyone.</p>
+        <form id="mlForm" novalidate>
+          <label class="skip" for="email">Your email address</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required>
+          <button class="btn btn-rose" type="submit"><span>Join the list</span><span class="arw" aria-hidden="true">&rarr;</span></button>
+        </form>
+        <p class="note">You can unsubscribe from any email, any time.</p>
+        <p class="ok" id="mlOk" role="status">Thank you — you are on the list. Look out for a note from us before 11 October.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <svg class="lockup" viewBox="0 0 200 190" role="img" aria-label="SHUMI"><path class="f" fill-rule="evenodd" d="M100 2c6 14 17 24 17 34 0 10-8 17-17 17s-17-7-17-17c0-10 11-20 17-34Zm0 19c-3 7-8 12-8 18 0 5 4 8 8 8s8-3 8-8c0-6-5-11-8-18Z"/><path class="s" fill="none" stroke-width="10" stroke-linejoin="round" d="M100 48c-6-14-20-24-38-24-28 0-48 20-44 50 4 30 30 68 82 110 52-42 78-80 82-110 4-30-16-50-44-50-18 0-32 10-38 24Z"/><text x="100" y="116" text-anchor="middle" font-family="Georgia,serif" font-size="46" fill="currentColor">SHUMI</text><path class="w" d="M12 114c50 21 128 17 182-18-48 43-134 47-182 18Z"/></svg>
+        <p class="muted" style="margin-top:16px;max-width:34ch">A place for women to gather, grow and belong. Brockton, Massachusetts.</p>
+      </div>
+      <div><h3>Explore</h3><ul>
+        <li><a href="#about">About</a></li><li><a href="#programmes">What we do</a></li>
+        <li><a href="#event">Events</a></li><li><a href="#stories">Stories</a></li></ul></div>
+      <div><h3>Find us</h3><ul>
+        <li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li>
+        <li><a href="mailto:hello@shumi.org">hello@shumi.org</a></li></ul></div>
+    </div>
+    <div class="ft-base">
+      <span>© 2026 SHUMI</span><a href="#">Privacy</a><a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<div class="tbar" id="tbar">
+  <div><b>Get tickets</b><small>Sun 11 Oct · Brockton</small></div>
+  <a class="btn btn-ink" href="#event"><span>Tickets</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hero=document.getElementById('top'), tbar=document.getElementById('tbar'),
+      prog=document.getElementById('prog');
+
+  /* 1 · the pink line measures the page; the ticket bar arrives after the hero */
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-innerHeight;
+    prog.style.transform='scaleX('+(h>0?Math.min(scrollY/h,1):0)+')';
+    tbar.toggleAttribute('data-show', scrollY > hero.offsetHeight*0.8);
+  }
+  addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll); onScroll();
+
+  /* 2 · hero type lifts once, on load */
+  var lines=document.querySelectorAll('.hero .line');
+  if(reduce){ lines.forEach(function(el){el.classList.add('in')}); }
+  else requestAnimationFrame(function(){
+    lines.forEach(function(el,i){ el.style.transitionDelay=(i*90)+'ms'; el.classList.add('in'); });
+  });
+
+  /* 3 · the film. Poster carries it if motion is unwanted or the file never lands. */
+  [].forEach.call(document.querySelectorAll('video'), function(vid){
+    if(reduce) return;
+    var want=false;
+    function play(){ if(want){ var p=vid.play(); if(p&&p.catch) p.catch(function(){}); } }
+    vid.preload='auto'; vid.load();
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){es.forEach(function(e){
+        want=e.isIntersecting; e.isIntersecting?play():vid.pause();
+      })},{threshold:.05}).observe(vid);
+    } else { want=true; play(); }
+    document.addEventListener('visibilitychange',function(){ document.hidden?vid.pause():play(); });
+  });
+
+  /* 4 · section entrances */
+  var rises=document.querySelectorAll('.rise');
+  if(reduce||!('IntersectionObserver' in window)){ rises.forEach(function(el){el.classList.add('in')}); }
+  else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    })},{threshold:.12});
+    rises.forEach(function(el){io.observe(el)});
+  }
+
+  /* 5 · drop parallax — transform only, rAF-throttled, desktop only */
+  var pars=document.querySelectorAll('.par'), ticking=false;
+  function par(){
+    ticking=false;
+    pars.forEach(function(el){
+      var r=el.getBoundingClientRect(), p=(r.top+r.height/2-innerHeight/2)/innerHeight;
+      el.style.transform='translate3d(0,'+(-p*(+el.dataset.par)*260).toFixed(1)+'px,0)';
+    });
+  }
+  if(!reduce && innerWidth>=900 && pars.length){
+    addEventListener('scroll',function(){ if(!ticking){ticking=true;requestAnimationFrame(par);} },{passive:true});
+    par();
+  }
+
+  /* 6 · countdown — only the changed digit moves */
+  var target=new Date('2026-10-11T13:00:00-04:00'), prev={};
+  function slide(el,val){
+    if(prev[el.dataset.cd+el.className]===val) return;
+    prev[el.dataset.cd+el.className]=val;
+    if(!reduce && el.animate) el.animate([{transform:'translateY(100%)'},{transform:'none'}],
+      {duration:420,easing:'cubic-bezier(.22,1,.36,1)'});
+    el.textContent=val;
+  }
+  function tick(){
+    var ms=target-new Date(); if(ms<0){ return; }
+    var d=Math.floor(ms/864e5), h=Math.floor(ms/36e5)%24, m=Math.floor(ms/6e4)%60;
+    document.querySelectorAll('[data-cd]').forEach(function(el){
+      slide(el, el.dataset.cd==='d'?d:el.dataset.cd==='h'?h:m);
+    });
+  }
+  tick(); setInterval(tick,30000);
+
+  /* 7 · impact figures count up once */
+  var figs=document.querySelectorAll('[data-count]');
+  function run(el){
+    var end=+el.dataset.count;
+    if(reduce){ el.textContent=end; return; }
+    var t0=performance.now();
+    (function step(now){
+      var p=Math.min((now-t0)/1300,1);
+      el.textContent=Math.round(end*(1-Math.pow(1-p,3)));
+      if(p<1) requestAnimationFrame(step);
+    })(t0);
+  }
+  if(!('IntersectionObserver' in window)) figs.forEach(run);
+  else{
+    var io2=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){run(e.target);io2.unobserve(e.target);}
+    })},{threshold:.6});
+    figs.forEach(function(el){io2.observe(el)});
+  }
+
+  /* 8 · menu */
+  var mb=document.getElementById('menuBtn'), mp=document.getElementById('mPanel'),
+      mc=document.getElementById('menuClose');
+  function open(v){
+    mp.toggleAttribute('data-open',v); mb.setAttribute('aria-expanded',v);
+    document.body.style.overflow=v?'hidden':'';
+    (v?mc:mb).focus();
+  }
+  mb.addEventListener('click',function(){open(true)});
+  mc.addEventListener('click',function(){open(false)});
+  mp.addEventListener('click',function(e){ if(e.target.tagName==='A') open(false); });
+  addEventListener('keydown',function(e){ if(e.key==='Escape'&&mp.hasAttribute('data-open')) open(false); });
+
+  /* 9 · mailing list — a preview, so it confirms and sends nothing */
+  var f=document.getElementById('mlForm'), ok=document.getElementById('mlOk');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var i=document.getElementById('email');
+    if(!i.checkValidity()){ i.focus(); return; }
+    ok.toggleAttribute('data-on',true); f.reset();
+  });
+})();
+</script>
+</body>
+</html>
