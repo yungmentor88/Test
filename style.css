@@ -9,8 +9,8 @@
   --rose-deep:#8a5a55;
   --accent:#a63d40;
   --line:#e4d9d2;
-  --serif:'Cormorant Garamond',serif;
-  --sans:'Manrope',sans-serif;
+  --serif:'Newsreader',serif;
+  --sans:'Instrument Sans',sans-serif;
   --maxw:1180px;
   --ease:cubic-bezier(.22,.8,.24,1);
 }
@@ -159,7 +159,7 @@ section{padding:110px 0}
 
 /* ---------- Quotes ---------- */
 .quote-sec{text-align:center}
-.quote-sec blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(26px,3.6vw,42px);line-height:1.35;max-width:26ch;margin:26px auto}
+.quote-sec blockquote{font-family:var(--serif);font-style:normal;font-size:clamp(26px,3.6vw,42px);line-height:1.35;max-width:26ch;margin:26px auto}
 .quote-sec cite{font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--rose-deep)}
 .quote-nav{display:flex;gap:10px;justify-content:center;margin-top:36px}
 .quote-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;font-size:18px;color:var(--ink);transition:background .3s,color .3s}
@@ -273,3 +273,8 @@ footer ul a:hover{color:#fff}
 
 /* ---------- Focus ---------- */
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* Hallmark gate 34 — the clip must sit on html AND body, and be clip, not hidden:
+   the decorative oversized numerals and the marquee are meant to run past the edge,
+   but the document itself must never scroll sideways at 320px. */
+html,body{overflow-x:clip}

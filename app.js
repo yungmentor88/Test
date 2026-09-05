@@ -25,11 +25,11 @@
 
   // Quote rotator
   const quotes=[
-    {t:'“There is no limit to what we, as women, can accomplish.”',c:'Michelle Obama'},
+    {t:'“There is no limit to what we, as women, can accomplish.”',c:'Michelle O.'},
     {t:'“When women support each other, incredible things happen.”',c:'A SHUMI Belief'},
-    {t:'“I am not free while any woman is unfree.”',c:'Audre Lorde'},
+    {t:'“I am not free while any woman is unfree.”',c:'Audre L.'},
     {t:'“Empowered women don’t wait for doors to open — we build new rooms.”',c:'SHUMI Original'},
-    {t:'“Each time a woman stands up for herself, she stands up for all women.”',c:'Maya Angelou'}
+    {t:'“Each time a woman stands up for herself, she stands up for all women.”',c:'Maya A.'}
   ];
   const bq=document.querySelector('[data-quote]'),cite=document.querySelector('[data-cite]');
   if(bq&&cite){
