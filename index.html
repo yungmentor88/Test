@@ -1,30 +1,227 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SHUMI — preview in preparation</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="author" content="9ja LDA">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<style>
-:root{--ink:#1A0F14;--on:#FBF8F6;--muted:#C6B4BC;--rose:#E85CA3}
-*{box-sizing:border-box}
-body{margin:0;min-height:100svh;display:grid;place-items:center;padding:32px;
-  background:var(--ink);color:var(--on);
-  font:400 1.0625rem/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center}
-img{width:min(210px,54vw);height:auto;margin:0 auto 30px}
-h1{font-size:clamp(1.4rem,4vw,1.9rem);font-weight:600;letter-spacing:-.02em;margin:0 0 14px}
-p{margin:0 auto;max-width:38ch;color:var(--muted)}
-i{display:block;width:44px;height:2px;background:var(--rose);margin:26px auto 0}
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHUMI — A Movement of Women Rising</title>
+<meta name="description" content="SHUMI is a community where women find connection, resources, education, and support.">
+<link rel="preload" href="assets/fonts/Syne-normal-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Manrope-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="./style.css">
+<link rel="icon" href="assets/logo.png">
 </head>
 <body>
-  <main>
-    <img src="assets/logo-light.png" width="512" height="469" alt="SHUMI">
-    <h1>This preview is being prepared.</h1>
-    <p>The address is live and connected — the design lands here shortly.</p>
-    <i aria-hidden="true"></i>
-  </main>
+
+<nav class="nav" aria-label="Main navigation">
+  <div class="wrap">
+    <a class="nav-logo" href="./index.html"><img src="assets/logo.png" alt="SHUMI"></a>
+    <ul class="nav-links">
+      <li><a href="./index.html" class="active">Home</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="./events.html">Events</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+      <li><a class="btn fill nav-cta" href="./event-empowerment.html">Oct 11 — Tickets</a></li>
+    </ul>
+    <button class="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="m-menu">
+  <a href="./index.html">Home<small>01</small></a>
+  <a href="./about.html">About<small>02</small></a>
+  <a href="./events.html">Events<small>03</small></a>
+  <a href="./contact.html">Contact<small>04</small></a>
+  <a class="btn fill" href="./event-empowerment.html">Oct 11 — Get Tickets</a>
+</div>
+
+<header class="hero">
+  <div class="hero-bg">
+    <img src="assets/hero-bold.jpg" alt="Portrait of a confident woman in dramatic magenta light" fetchpriority="high">
+  </div>
+  <span class="ticker" aria-hidden="true">SHUMI — A Movement of Women Rising</span>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">A Community · A Movement</p>
+    <h1 class="display">We Rise<span class="accent">Together.</span></h1>
+    <div class="hero-row">
+      <div class="hero-ctas">
+        <a class="btn fill" href="./event-empowerment.html">Join Us Oct 11 <span class="arr">→</span></a>
+        <a class="btn ghost" href="./about.html">Our Story</a>
+      </div>
+      <div class="hero-side">
+        <p>SHUMI is a growing hub for women — connection, resources, education, events, and real support. Whatever season you're in, you belong in this room.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="event-feature" id="october">
+  <span class="event-big-date" aria-hidden="true">10·11</span>
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">The Signature Event</p>
+      <h2>Women's Empowerment Event</h2>
+      <p>One day. One room. Hundreds of women choosing to rise together — keynotes, workshops, vendors, and celebration. This is the event SHUMI was made for.</p>
+      <div class="countdown" data-countdown>
+        <div><strong data-d>—</strong><span>Days</span></div>
+        <div><strong data-h>—</strong><span>Hours</span></div>
+        <div><strong data-m>—</strong><span>Minutes</span></div>
+        <div><strong data-s>—</strong><span>Seconds</span></div>
+      </div>
+      <a class="btn fill" href="https://www.eventbrite.com" target="_blank" rel="noopener">Get Tickets on Eventbrite <span class="arr">→</span></a>
+      <a class="btn ghost" href="./event-empowerment.html" style="margin-left:12px">Full Details</a>
+    </div>
+    <div class="img rv">
+      <img src="assets/conference.jpg" alt="Speaker on stage at a women's empowerment event in magenta light" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">What We Do</p>
+        <h2 class="h2">Built for every season of a woman's life</h2>
+      </div>
+      <a class="link-u" href="./about.html">More about SHUMI</a>
+    </div>
+    <div class="prog-grid">
+      <a class="panel wide rv" href="./about.html">
+        <span class="idx">01</span>
+        <h3>Community &amp; Connection</h3>
+        <p>Gatherings, circles, and sisterhood — spaces where women are seen, heard, and genuinely known.</p>
+      </a>
+      <a class="panel narrow rv" href="./about.html">
+        <span class="idx">02</span>
+        <h3>Education &amp; Resources</h3>
+        <p>Workshops, mentorship, and practical tools — from financial literacy to wellness and leadership.</p>
+      </a>
+      <a class="panel narrow img-panel rv" href="./about.html">
+        <img src="assets/workshop.jpg" alt="Women in a SHUMI workshop circle" loading="lazy">
+        <div class="cap"><h3>Events &amp; Experiences</h3></div>
+      </a>
+      <a class="panel wide rv" href="./about.html">
+        <span class="idx">04</span>
+        <h3>Support &amp; Opportunity</h3>
+        <p>Partnerships, volunteer pathways, and doors opened — because when one woman rises, we all rise.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="stats" style="padding:0">
+  <div class="wrap">
+    <div class="grid">
+      <div class="stat"><b><span data-count="500">0</span><em>+</em></b><span>Women Reached</span></div>
+      <div class="stat"><b><span data-count="25">0</span><em>+</em></b><span>Events Hosted</span></div>
+      <div class="stat"><b><span data-count="12">0</span><em>·</em></b><span>Partner Organizations</span></div>
+      <div class="stat"><b><span data-count="100">0</span><em>%</em></b><span>Heart, Always</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-sec">
+  <div class="wrap rv">
+    <span class="quote-mark" aria-hidden="true">“</span>
+    <blockquote data-quote>“There is no limit to what we, as women, can accomplish.”</blockquote>
+    <cite data-cite>— Michelle Obama</cite>
+    <div class="quote-nav">
+      <button data-qprev aria-label="Previous quote">←</button>
+      <button data-qnext aria-label="Next quote">→</button>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="eyebrow">SHUMI Stories</p>
+        <h2 class="h2">Voices from the movement</h2>
+      </div>
+      <a class="link-u" href="./about.html">Read more stories</a>
+    </div>
+    <div class="stories">
+      <a class="story rv" href="./about.html">
+        <img src="assets/workshop.jpg" alt="Women journaling together in a SHUMI circle" loading="lazy">
+        <div class="cap">
+          <span class="cat">Community</span>
+          <h3>“I walked in a stranger and left with sisters.”</h3>
+        </div>
+      </a>
+      <a class="story rv" href="./about.html">
+        <img src="assets/hero-editorial.jpg" alt="Women sharing a meal at a SHUMI gathering" loading="lazy">
+        <div class="cap">
+          <span class="cat">Growth</span>
+          <h3>From dreaming to doing: three women, one plan</h3>
+        </div>
+      </a>
+      <a class="story rv" href="./about.html">
+        <img src="assets/conference.jpg" alt="Audience at a SHUMI empowerment event" loading="lazy">
+        <div class="cap">
+          <span class="cat">Events</span>
+          <h3>The room where it happened</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <span class="cta-ring" aria-hidden="true"></span>
+  <div class="wrap rv" style="position:relative">
+    <p class="eyebrow">Join the Movement</p>
+    <h2 class="h2">Your seat<span class="outline">is waiting.</span></h2>
+    <a class="btn fill" href="./contact.html">Get Connected <span class="arr">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-mega">SHUMI<span>Rise Together</span></p>
+    <div class="foot-grid">
+      <div>
+        <h4>The Movement</h4>
+        <p>A hub for women — connection, resources, opportunities, education, events, and support.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./events.html">Events</a></li>
+          <li><a href="./about.html">Our Impact</a></li>
+          <li><a href="./contact.html">Volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#" rel="noopener">Instagram</a></li>
+          <li><a href="#" rel="noopener">Facebook</a></li>
+          <li><a href="./contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Mailing List</h4>
+        <p style="margin-bottom:16px">Event news, stories, and resources — straight to your inbox.</p>
+        <form class="nl-form" data-demo>
+          <input type="email" placeholder="Your email address" aria-label="Email address" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 SHUMI · All rights reserved</span>
+      <span class="concept">Design Concept Two — The Movement</span>
+    </div>
+  </div>
+</footer>
+
+<div class="switcher" role="navigation" aria-label="Design concepts">
+  <a href="index.html">Concept One</a>
+  <a href="./index.html" class="on">Concept Two</a>
+</div>
+
+<script src="./app.js"></script>
 </body>
 </html>
